@@ -163,7 +163,7 @@ Para activar el log de SSH tendremos que acceder el archivo ```/etc/ssh/sshd_con
 
 ```bash
 #Logging
-SyslogFacility DEBUG
+SyslogFacility DAEMON
 LogLevel DEBUG
 ```
 
