@@ -12,6 +12,6 @@ if [ "$EUID" -ne 0 ]
 fi
 
 mount -t procfs proc /proc
-pkg install -y nano kde5 sddm xorg
+pkg install -y nano kde5 sddm xorg firefox chromium wget
 sysrc dbus_enable="YES" && service dbus start
 sysrc sddm_enable="YES" && service sddm start
