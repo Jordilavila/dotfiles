@@ -6,6 +6,18 @@ FreeBSD es un sistema unix bastante usado para montar servidores o también usad
 
 ## Después de la instalación
 
+Algunas cosas importantes que hacer tras instalar FreeBSD.
+
+### Herramientas esenciales
+
+Creo necesario instalar alguna paquetería de uso esencial como podría ser algún editor de texto de terminal como ```nano``` o la herramienta ```wget```. A continuación la manera de descargar estos paquetes necesarios sin los que el resto del tutorial no va a funcionar:
+
+```bash
+pkg install -y nano wget
+```
+
+### Instalación de KDE
+
 Tras instalar FreeBSD tuve que instalar un servidor gráfico, en mi caso escogí KDE. Para instalar KDE recomiendo los siguientes pasos:
 
 ```bash
@@ -17,7 +29,7 @@ pkg upgrade
 ```bash
 ## Instalación de KDE
 mount -t procfs proc /proc
-pkg install -y nano kde5 sddm xorg firefox chromium wget
+pkg install -y kde5 sddm xorg firefox chromium
 sysrc dbus_enable="YES" && service dbus start
 sysrc sddm_enable="YES" && service sddm start
 ```
@@ -28,7 +40,6 @@ El archivo se puede descargar y ejecutar con los siguietnes comandos:
 
 ```bash
 ## Run as root
-pkg install -y wget
 wget https://raw.githubusercontent.com/Jordilavila/dotfiles/main/FreeBSD/install_files/install_kde5.sh
 sh install_kde5.sh
 ```
@@ -63,6 +74,17 @@ Ahora nos tocaría hacer un reboot del sistema.
 
 ## Una capa de personalización
 
-Esto es opcional, sólo que me parecía un poco feo dejar FreeBSD así, con un KDE desnudo. Por lo tanto recopilé unas fotos de Internet y lo monté en un ZIP para que quien se las quiera poner se las ponga. Podéis desgar el famoso ZIP desde aquí, o usando wget como podemos ver a continuación:
+Esto es opcional, sólo que me parecía un poco feo dejar FreeBSD así, con un KDE desnudo. Por lo tanto recopilé unas fotos de Internet y lo monté en un ZIP para que quien se las quiera poner se las ponga. Podéis desgar el famoso ZIP desde [aquí](https://github.com/Jordilavila/dotfiles/raw/main/FreeBSD/theme/FreeBSD_Theme.zip), o usando wget como podemos ver a continuación:
+
+```bash
+wget https://github.com/Jordilavila/dotfiles/raw/main/FreeBSD/theme/FreeBSD_Theme.zip
+unzip FreeBSD_Theme.zip
+```
+
+Tras esto, nos quedaría escoger el tema _brisa oscuro_ y cambiar el fondo de escritorio al que nos encontramos en el zip (para tema oscuro, el fondo oscuro). Y, finalmente, cambiamos el icono de la barra de tareas por el de FreeBSD; esto se puede hacer haciendo click derecho sobre el icono actual y seleccionando _configurar el lanzador de aplicaciones_. 
+
+Finalmente, nos queda algo así:
+
+![FreeBSD Desktop](images/freebsd_desktop.png)
 
 
