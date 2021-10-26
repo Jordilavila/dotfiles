@@ -72,7 +72,7 @@ pw groupmod wheel -m YOUR_USERNAME
 
 Ahora nos tocaría hacer un reboot del sistema.
 
-## Una capa de personalización
+### Una capa de personalización
 
 Esto es opcional, sólo que me parecía un poco feo dejar FreeBSD así, con un KDE desnudo. Por lo tanto recopilé unas fotos de Internet y lo monté en un ZIP para que quien se las quiera poner se las ponga. Podéis desgar el famoso ZIP desde [aquí](https://github.com/Jordilavila/dotfiles/raw/main/FreeBSD/theme/FreeBSD_Theme.zip), o usando wget como podemos ver a continuación:
 
@@ -87,4 +87,51 @@ Finalmente, nos queda algo así:
 
 ![FreeBSD Desktop](images/freebsd_desktop.png)
 
+## Puesta a punto de las redes
 
+Para poner en funcionamiento las interfaces de red en FreeBSD tendremos que acceder al archivo de configuración ```/etc/rc.conf``` para modificarlo.
+
+Una vez accedemos a él, nos vamos a encontrar algo parecido a lo que vemos a continuación. Cabe destacar que yo estoy corriendo el sistema en Virtualbox con dos interfaces de red y se me pide que establezca la interfaz _host-only_ como estática:
+
+```bash
+hostname="freebsd_server"
+keymap="es.kbd"
+ifconfig_em0="DHCP"
+sshd_enable="YES"
+# Set dumpdev to "AUTO" to enable crash dumps, "NO" to disable
+dumpdev="AUTO"
+zfs_enable="YES"
+dbus_enable="YES"
+sddm_enable="YES"
+vboxguest_enable="YES"
+vboxservice_enable="YES"
+```
+
+Una vez visto el archivo, procedemos a configurar la segunda interfaz de red como DHCP, para que asigne IP automaticamente. Esto será tan sencillo como añadir la línea ```ifconfig_em1="DHCP"``` al final del archivo, mismo. Esto puede servir, pero como ya he dicho, yo necesito que esta IP sea estática. Además de esto, he modificado un poco el archivo para que sea más claro:
+
+```bash
+# FreeBSD 
+hostname="freebsd_server"
+keymap="es.kbd"
+
+# Networks:
+ifconfig_em0="DHCP"
+ifconfig_em1="inet 192.168.56.221 netmask 255.255.255.0"
+
+# SSH: 
+sshd_enable="YES"
+
+# Set dumpdev to "AUTO" to enable crash dumps, "NO" to disable
+dumpdev="AUTO"
+zfs_enable="YES"
+
+# KDE5:
+dbus_enable="YES"
+sddm_enable="YES"
+
+# VirtualBox:
+vboxguest_enable="YES"
+vboxservice_enable="YES"
+```
+
+Finalmente, reiniciamos.
