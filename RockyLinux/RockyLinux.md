@@ -39,7 +39,7 @@ Tras instalar las herramientas anteriores, insertamos el CD de las GuestAddition
 
 Para poner en funcionamiento las interfaces de red en Rocky Linux tendremos que movernos al directorio ```/etc/sysconfig/network-scripts/```. En este directorio tendremos como archivos todas las interfaces de red que tiene nuestra máquina.
 
-En mi caso, estoy trabajando bajo VirtualBox, por lo tanto, las redes que me aparecen son ```enp0s3``` y ```enp0s6``` (NatNetwork y Host-Only, respectivamente).
+En mi caso, estoy trabajando bajo VirtualBox, por lo tanto, las redes que me aparecen son ```ifcfg-enp0s3``` y ```ifcfg-enp0s6``` (NatNetwork y Host-Only, respectivamente).
 
 Tendremos que verificar que ambas redes tengan el parámetro ```ONBOOT``` establecido en ```YES```. Finalmente, reiniciamos el servicio o el sistema, como siempre, recomiendo reinciar el servicio: 
 
