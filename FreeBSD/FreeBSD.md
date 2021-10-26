@@ -59,3 +59,10 @@ Esto podría lanzar un mensaje de aviso donde dice que para que las guestadditio
 pw groupmod wheel -m YOUR_USERNAME
 ```
 
+Ahora nos tocaría hacer un reboot del sistema.
+
+## Una capa de personalización
+
+Esto es opcional, sólo que me parecía un poco feo dejar FreeBSD así, con un KDE desnudo. Por lo tanto recopilé unas fotos de Internet y lo monté en un ZIP para que quien se las quiera poner se las ponga. Podéis desgar el famoso ZIP desde aquí, o usando wget como podemos ver a continuación:
+
+
