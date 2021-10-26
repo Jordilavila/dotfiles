@@ -17,7 +17,7 @@ pkg upgrade
 ```bash
 ## Instalación de KDE
 mount -t procfs proc /proc
-pkg install -y nano kde5 sddm xorg
+pkg install -y nano kde5 sddm xorg firefox chromium
 sysrc dbus_enable="YES" && service dbus start
 sysrc sddm_enable="YES" && service sddm start
 ```
@@ -34,4 +34,19 @@ Si estamos en VirtualBox vamos a querer instalar las GuestAdditions. Esto se hac
 pkg install -y emulators/virtualbox-ose-additions
 sysrc vboxguest_enable="YES"
 sysrc vboxservice_enable="YES"
+```
+
+Ahora tocaría añadir estas líneas en ```/etc/X11/xorg.conf```:
+
+```bash
+Section "Device"
+        Identifier "Card0"
+        Driver "vboxvideo"
+        VendorName "InnoTek Systemberatung GmbH"
+        BoardName "VirtualBox Graphics Adapter"
+EndSection
+Section "InputDevice"
+        Identifier "Mouse0"
+        Driver "vboxmouse"
+EndSection
 ```
