@@ -8,6 +8,16 @@ FreeBSD es un sistema unix bastante usado para montar servidores o también usad
 
 Algunas cosas importantes que hacer tras instalar FreeBSD.
 
+### Actualización del sistema
+
+Tras instalar un sistema operativo, lo primero que hay que hacer es actualizar el sistema operativo. Para actualizar el sistema usaremos los siguientes comandos:
+
+```bash
+# Run as root
+pkg update
+pkg upgrade
+```
+
 ### Herramientas esenciales
 
 Creo necesario instalar alguna paquetería de uso esencial como podría ser algún editor de texto de terminal como ```nano``` o la herramienta ```wget```. A continuación la manera de descargar estos paquetes necesarios sin los que el resto del tutorial no va a funcionar:
@@ -19,12 +29,6 @@ pkg install -y nano wget
 ### Instalación de KDE
 
 Tras instalar FreeBSD tuve que instalar un servidor gráfico, en mi caso escogí KDE. Para instalar KDE recomiendo los siguientes pasos:
-
-```bash
-## Actualización del sistema
-pkg update
-pkg upgrade
-```
 
 ```bash
 ## Instalación de KDE
@@ -44,7 +48,7 @@ wget https://raw.githubusercontent.com/Jordilavila/dotfiles/main/FreeBSD/install
 sh install_kde5.sh
 ```
 
-Una vez que hemos instalado KDE5 y puesto en marcha el servicio, tendremos que cambiar de _Wayland_ a _X11_ en la pantalla de inicio de sesión.
+**Importante:** una vez que hemos instalado KDE5 y puesto en marcha el servicio, tendremos que cambiar de _Wayland_ a _X11_ en la pantalla de inicio de sesión.
 
 ### Si estamos en VirtualBox
 
