@@ -31,15 +31,35 @@ Para ello, abrimos Powershell en modo administrador y escribimos lo siguiente:
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
-Tras esto, ya tendremos Chocolatey instalado y funcionando.
+Tras esto, ya tendremos Chocolatey instalado y funcionando. No nos vamos a quedar aquí, si en Linux hemos usado cosas tan básicas como ```nano```, estaría genial tenerlas también en Windows. Pues instalemos esas cositas que nunca vienen mal:
+
+```powershell
+# Run as admin
+choco install nano grep
+```
 
 ## Servicios remotos
 
 Lo más normal es que usemos nuestro servidor de manera remota, por lo que usaremos algunos servicios remotos como ```SSH```, ```SFTP``` y ```SCP```.
 
-Para instalar estos servicios tendremos que instalar ```SSH```, aunque ya nos lo encontramos instalado en nuestro sistema.
+Para instalar estos servicios tendremos que instalar ```SSH```, aunque ya nos lo encontramos instalado en nuestro sistema. Lo único que tenemos que hacer es habilitar la característica opcional del Servidor de OpenSSH. Esto lo tenemos en Configuración -> Aplicaciones y características -> Características opcionales.
+
+Finalmente, para comprobar que tenemos instalado el servidor de SSH, podemos usar los siguientes comandos:
+
+```powershell
+# Comprobar el estado del servidor sshd
+Get-Service sshd
+
+# Iniciar el servidor sshd
+Start-Service sshd
+
+# Detener el servidor sshd
+Stop-Service sshd
+```
+
+Para más detalles, es interesante revisar la [documentación de Microsoft](https://docs.microsoft.com/es-es/windows-server/administration/openssh/openssh_server_configuration).
 
 ### Configuración de SSH
 
 Es necesario que por seguridad configuremos algunos aspectos de SSH para que se prohiban los accesos al usuario root y las contraseñas vacías. 
-```
+
