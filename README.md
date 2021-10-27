@@ -8,9 +8,9 @@
 Mis dotfiles para mis sistemas operativos favoritos o aquellos que he usado más de una vez y he necesitado personalizar.
 
 - [FreeBSD](FreeBSD/FreeBSD.md)
-- Manjaro
+- [Manjaro](Manjaro/Manjaro.md)
 - [Rocky Linux](RockyLinux/RockyLinux.md)
-- Windows Server
+- [Windows Server](WindowsServer2022/WindowsServer2022.md)
 
 ## Herramientas externas
 
