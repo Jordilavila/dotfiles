@@ -70,7 +70,7 @@ systemctl restart sshd
 
 ### Activando el log de SSH
 
-Para activar el log de SSH tendremos que acceder el archivo ```/etc/ssh/sshd_config``` y modificar las líneas siguientes para que queden tal que así:
+Para activar el log de SSH tendremos que acceder al archivo ```/etc/ssh/sshd_config``` y modificar las líneas siguientes para que queden tal que así:
 
 ```bash
 #Logging
