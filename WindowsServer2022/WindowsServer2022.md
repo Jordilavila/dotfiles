@@ -55,6 +55,9 @@ Start-Service sshd
 
 # Detener el servidor sshd
 Stop-Service sshd
+
+# Establecer el arranque del servicio como automático
+Set-Service sshd -StartupType Automatic
 ```
 
 Para más detalles, es interesante revisar la [documentación de Microsoft](https://docs.microsoft.com/es-es/windows-server/administration/openssh/openssh_server_configuration).
