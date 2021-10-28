@@ -141,8 +141,8 @@ cd .ssh
 type id_rsa.pub | ssh REMOTE_USER@REMOTE_IP "cat >> /home/REMOTE_USER/.ssh/authorized_keys"
 
 # Enviar al ordenador destino las claves para que se conecte sin pedirle la contraseña. (DESTINO WINDOWS)
-ssh Administrador@192.168.137.223 "mkdir .ssh"
-type .ssh/id_rsa.pub | ssh Administrador@192.168.137.223 "powershell; cat >> C:\Users\Administrador\.ssh\authorized_keys"
+ssh REMOTE_USER@REMOTE_IP "mkdir .ssh"
+type .ssh/id_rsa.pub | ssh REMOTE_USER@REMOTE_IP "powershell; cat >> C:\Users\REMOTE_USER\.ssh\authorized_keys"
 
 # Esto último no he conseguido que funcione con un servidor Windows.
 ```
