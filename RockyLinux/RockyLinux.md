@@ -192,3 +192,7 @@ dnf install unzip -y
 ```bash
 mv phpMyAdmin-*-all-languages /usr/share/phpmyadmin
 ```
+
+## TrueNAS + iSCSI
+
+TrueNAS es un sistema operativo basado en FreeBSD dedicado a montar un servidor NAS 
