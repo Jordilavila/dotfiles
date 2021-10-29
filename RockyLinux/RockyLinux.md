@@ -121,3 +121,74 @@ Para conectarnos por SCP usaremos el siguiente comando:
 ```bash
 scp <-P <puerto>> <ruta de archivo local> REMOTE_USER@REMOTE_IP:<ruta destino>
 ```
+
+## Servidor MySQL - MariaDB
+
+Vamos a instalar y configurar MariaDB en nuestra máquina Rocky Linux. MariaDB es un servidor de bases de datos relacionales.
+
+### Instalación 
+
+Para llevar a cabo la instalación de MariaDB tenemos que escalar privilegios en la consola y escribir el comando de instalación:
+
+```bash
+dnf -y install mariadb-server mariadb
+```
+
+Tras esto, debemos levantar el servicio con ```systemctl start mariadb``` y habilitarlo con ```systemctl enable mariadb```.
+
+Ahora tocaría darle las instrucciones para que se instale:
+
+```bash
+# Instalación segura
+mysql_secure_installation
+
+# Acceder al servidor
+mysql -u root -p
+```
+
+Ahora podríamos crear una base de datos SQL:
+
+```sql
+
+```
+
+## Servidor Apache y PhpMyAdmin
+
+### Instalación de Apache
+
+```bash
+dnf install httpd -y
+```
+
+```bash
+systemctl start httpd
+systemctl enable httpd
+```
+
+```bash
+firewall-cmd --permanent --zone=public --add-service=http
+firewall-cmd --permanent --zone=public --add-service=https
+firewall-cmd --reload
+```
+
+### Instalación de PHPMyAdmin
+
+```bash
+dnf module reset php
+dnf module eable php:7.4
+dnf install php php-common php-opcache php-cli php-gd php-curl php-mysqlnd php-xml -y
+```
+
+Ahora descargamos y descomprimimos phpMyAdmin:
+
+```bash
+wget https://files.phpmyadmin.net/phpMyAdmin/5.1.1/phpMyAdmin-5.1.1-all-languages.zip
+unzip phpMyAdmin-*-all-languages.zip
+
+# Si unzip no está instalado lo instalamos así:
+dnf install unzip -y
+```
+
+```bash
+mv phpMyAdmin-*-all-languages /usr/share/phpmyadmin
+```
