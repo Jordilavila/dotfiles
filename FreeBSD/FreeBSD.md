@@ -215,3 +215,22 @@ Para conectarnos por SCP usaremos el siguiente comando:
 scp <-P <puerto>> <ruta de archivo local> REMOTE_USER@REMOTE_IP:<ruta destino>
 ```
 
+## Servicio de impresión con CUPS
+
+Tal vez necesitamos instalar un servidor de impresoras en nuestro sistema Linux para facilitar esta tarea en la red que estemos configurando. Esto lo podemos lograr usando CUPS.
+Para probar el sistema, vamos a instalar una impresora PDF.
+
+### Instalación de CUPS
+
+Para instalar CUPS tendremos que escalar privilegios de administrador en la consola e instalar el siguiente paquete:
+
+```bash
+pkg install cups print/gutenprint print/hplip cups-pdf
+```
+
+Los ficheros de configuración de CUPS se encontrarán en ```/usr/local/etc/cups```.
+
+### Configuración de CUPS
+
+Tras la instalación tendremos que editar unos ficheros para configurar nuestro servidor. Primero editaremos 
+
