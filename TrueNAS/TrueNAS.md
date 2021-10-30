@@ -5,4 +5,11 @@ TrueNAS es un sistema operativo basado en FreeBSD que nos trae montado un servid
 
 ## Instalación
 
-La instalación de TrueNAS es relativamente sencilla y similar a la de 
+La instalación de TrueNAS es relativamente sencilla y similar a la de FreeBSD, sólo tenemos que seguir los pasos y tendremos el sistema instalado.
+
+## Activando iSCSI
+
+El procotolo iSCSI sirve para conectar discos duros a nuestro servidor NAS. Para activarlo tendremos que aceder al panel de control desde el navegador y activarlo la sección de servicios.
+
+![Activación de iSCSI](images/iscsi.png)
+
