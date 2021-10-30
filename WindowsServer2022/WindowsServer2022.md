@@ -150,7 +150,7 @@ ssh REMOTE_USER@REMOTE_IP "mkdir .ssh"
 type .ssh/id_rsa.pub | ssh REMOTE_USER@REMOTE_IP "powershell; type >> C:\Users\REMOTE_USER\.ssh\authorized_keys"
 
 ## Si es un usuario administrador:
-ssh REMOTE_USER@REMOTE_IP C:\ProgramData\ssh
+ssh REMOTE_USER@REMOTE_IP "mkdir C:\ProgramData\ssh"
 type .ssh/id_rsa.pub | ssh REMOTE_USER@REMOTE_IP "powershell; type >> C:\ProgramData\ssh\administrators_authorized_keys"
 
 ```
