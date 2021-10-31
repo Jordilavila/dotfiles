@@ -215,6 +215,10 @@ Para conectarnos por SCP usaremos el siguiente comando:
 scp <-P <puerto>> <ruta de archivo local> REMOTE_USER@REMOTE_IP:<ruta destino>
 ```
 
+## Servicio de escritorio remoto con VNC
+
+## Servicio de escritorio remoto con RDP
+
 ## Servicio de impresión con CUPS
 
 Tal vez necesitamos instalar un servidor de impresoras en nuestro sistema Linux para facilitar esta tarea en la red que estemos configurando. Esto lo podemos lograr usando CUPS.
