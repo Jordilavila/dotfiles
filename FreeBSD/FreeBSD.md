@@ -236,7 +236,7 @@ Los ficheros de configuración de CUPS se encontrarán en ```/usr/local/etc/cups
 
 ### Configuración de CUPS
 
-Tras la instalación tendremos que editar unos ficheros para configurar nuestro servidor. Primero editaremos el fichero ```/etc7devfs.rules``` y añadiremos las líneas siguientes:
+Tras la instalación tendremos que editar unos ficheros para configurar nuestro servidor. Primero editaremos el fichero ```/etc/defaults/devfs.rules``` y añadiremos las líneas siguientes:
 
 ```bash
 [system=10]

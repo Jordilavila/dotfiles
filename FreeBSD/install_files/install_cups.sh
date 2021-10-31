@@ -16,7 +16,7 @@ pkg install cups print/gutenprint print/hplip cups-PDF
 echo "[system=10]
 add path 'unlpt*' mode 0660 group cups
 add path 'ulpt*' mode 0660 group cups
-add path 'lpt*' mode 0660 group cups" >> /etc/devfs.rules
+add path 'lpt*' mode 0660 group cups" >> /etc/defaults/devfs.rules
 
 sysrc cupsd_enable="YES"
 sysrc devfs_system_ruleset="system"
