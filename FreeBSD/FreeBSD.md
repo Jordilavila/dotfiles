@@ -347,6 +347,12 @@ Finalmente, configuramos el servicio para que se pueda acceder a él en toda la 
 </Location>
 ```
 
+Si también queremos que los clientes Windows puedan imprimir con nuestras impresoras, tendremos que acceder a los archivos ```/usr/local/etc/cups/mime.types``` y ```/usr/local/etc/cups/mime.convs``` y descomentar la línea siguiente:
+
+```bash
+application/octet-stream
+```
+
 ### Activando el log de CUPS
 
 En el caso de querer activar el log de CUPS tendremos que acceder al archivo ```/usr/local/etc/cups/cupsd.conf``` y cambiar la línea siguiente:
@@ -365,15 +371,13 @@ Para configurar la impresora PDF será tan sencillo como acceder a nuestra máqu
 
 Nos iremos a la pestaña de administración y nos logueamos con el usuario ```root```. Tras esto, añadiremos una impresora:
 
-![Añadiendo una impresora](images/adding_printer.png)
+![Impresora añadida](images/added_printer.png)
 
 Le damos a continuar y configuramos el nombre de la impresora, la descripción etc.Importante marcar que queremos compartir la impresora.
 
 ![Configuración de la impresora - paso 1](images/config_printer.png)
 
-Tras esto tendremos que configurar algun aspecto más de la impresora. Tenemos que establecer como fabricante genérico y como modelo el de impresora pdf genérica:
-
-![Configuración de la impresora - paso 2](images/config_printer_2.png)
+Tras esto tendremos que configurar algun aspecto más de la impresora. Tenemos que establecer como fabricante genérico y como modelo el de _Generic color postscript printer (en)_.
 
 Finalmente, ya tenemos la impresora configurada.
 
