@@ -122,6 +122,16 @@ Para conectarnos por SCP usaremos el siguiente comando:
 scp <-P <puerto>> <ruta de archivo local> REMOTE_USER@REMOTE_IP:<ruta destino>
 ```
 
+## Servidor de impresión PDF con CUPS
+
+Vamos a configurar un servidor de impresión usando CUPS para que nos imprima un archivo en formato PDF. Para ello vamos a tener que instalar un conjunto de paquetes y configurar y activar servicios. Todo esto vamos a poder hacerlo ejecutando un [script](install_files/install_cups.sh) que he escrito.
+
+Para ejecutar el script debemos hacer lo siguiente:
+
+```bash
+wget 
+```
+
 ## Servidor MySQL - MariaDB
 
 Vamos a instalar y configurar MariaDB en nuestra máquina Rocky Linux. MariaDB es un servidor de bases de datos relacionales.
