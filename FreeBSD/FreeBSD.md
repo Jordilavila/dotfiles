@@ -351,7 +351,7 @@ Finalmente, configuramos el servicio para que se pueda acceder a él en toda la 
 </Location>
 ```
 
-Si también queremos que los clientes Windows puedan imprimir con nuestras impresoras, tendremos que acceder a los archivos ```/usr/local/etc/cups/mime.types``` y ```/usr/local/etc/cups/mime.convs``` y descomentar la línea siguiente:
+Si también queremos que los clientes Windows puedan imprimir con nuestras impresoras, tendremos que acceder a los archivos ```/usr/local/share/cups/mime/mime.types``` y ```/usr/local/share/cups/mime/mime.convs``` y descomentar la línea siguiente:
 
 ```bash
 application/octet-stream
