@@ -401,29 +401,37 @@ SELECT * FROM rockytable;
 
 ## Servidor Apache y PhpMyAdmin
 
-### Instalación de Apache
+Es interesante poder lanzar páginas web desde nuestro servidor, por lo que vamos a instalar Apache y lanzar dos webs. Una web nos mostrará la tabla de MariaDB que hemos creado en el punto anterior y otra web montará un CMS.
+
+Para llevar a cabo todo esto, vamos a instalar Apache, PhpMyAdmin y todo el paquete PHP y, como CMS, Wordpress.
+
+### Instalando Apache
+
+Para poder llevar a cabo la implantación del servidor web, tendremos que habilitarlo. Para ello vamos a usar la siguiente batería de comandos:
 
 ```bash
-dnf install httpd -y
-```
+# Actualizar sistema e instalar httpd
+dnf update -y
+dnf install -y httpd
 
-```bash
-systemctl start httpd
+# Habilitar servidor web
 systemctl enable httpd
-```
+systemctl start httpd
 
-```bash
+# Permitir el paso a través del firewall
 firewall-cmd --permanent --zone=public --add-service=http
 firewall-cmd --permanent --zone=public --add-service=https
 firewall-cmd --reload
 ```
 
-### Instalación de PHPMyAdmin
+### Instalación de PHP y phpMyAdmin
+
+En esta herramienta va a ser necesaria para poder imprimir la base de datos en el navegador. Para instalar PHP vamos a usar la siguiente batería de comandos:
 
 ```bash
 dnf module reset php
-dnf module eable php:7.4
-dnf install php php-common php-opcache php-cli php-gd php-curl php-mysqlnd php-xml -y
+dnf module enable php:7.4
+dnf install -y php php-common php-opcache php-cli php-gd php-curl php-mysqlnd php-xml
 ```
 
 Ahora descargamos y descomprimimos phpMyAdmin:
@@ -436,9 +444,81 @@ unzip phpMyAdmin-*-all-languages.zip
 dnf install unzip -y
 ```
 
+Ahora nos tocaría mover y cambiar de nombre el nuevo directorio con el siguiente comando:
+
 ```bash
 mv phpMyAdmin-*-all-languages /usr/share/phpmyadmin
 ```
+
+Una vez movido, cambiamos a dicho directorio y empezamos la configuración y puesta a punto de _phpMyAdmin_:
+
+```bash
+cd /usr/share/phpmyadmin
+mv config.sample.inc.php config.inc.php
+```
+
+Ahora tendríamos que generar una clave de 32 bits, copiarla y añadirla en el archivo que hemos movido antes:
+
+```bash
+# Generar clave:
+openssl rand -base64 32
+
+# Abrir archivo:
+nano config.inc.php
+
+# Línea donde pegar la clave:
+cfg['blowfish_secret'] = 'CLAVE';
+```
+
+Ahora tendríamos que crear un nuevo directorio temporal con los permisos necesarios usando los comandos siguientes:
+
+```bash
+mkdir /usr/share/phpmyadmin/tmp
+chown -R apache:apache /usr/share/phpmyadmin
+chmod 777 /usr/share/phpmyadmin/tmp
+```
+
+### Creando los archivos de configuración de Apache
+
+El siguiente paso va a ser configurar Apache. Para ello abrimos el archivo ```/etc/httpd/conf.d/phpmyadmin.conf``` y pegamos el fragmento de texto siguiente:
+
+```bash
+Alias /phpmyadmin /usr/share/phpmyadmin
+<Directory /usr/share/phpmyadmin/>
+   AddDefaultCharset UTF-8
+   <IfModule mod_authz_core.c>
+     # Apache 2.4
+     <RequireAny>
+      Require all granted
+     </RequireAny>
+   </IfModule>
+</Directory>
+
+<Directory /usr/share/phpmyadmin/setup/>
+   <IfModule mod_authz_core.c>
+     # Apache 2.4
+     <RequireAny>
+       Require all granted
+     </RequireAny>
+   </IfModule>
+</Directory>
+```
+
+Tras esto, escribimos el siguiente comando y reiniciamos el servicio de Apache:
+
+```bash
+chcon -Rv --type=httpd_sys_content_t /usr/share/phpmyadmin/*
+
+systemctl restart httpd
+```
+
+Finalmente, podemos acceder a phpMyAdmin en la dirección ```http://MI_IP/phpmyadmin```:
+
+![PhpMyAdmin](images/rocky_phpmyadmin.png)
+
+### Creando una web en PHP que lea la base de datos
+
+### Creando una segunda web con Wordpress
 
 ## TrueNAS + iSCSI
 
