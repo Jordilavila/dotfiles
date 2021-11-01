@@ -297,10 +297,106 @@ mysql_secure_installation
 mysql -u root -p
 ```
 
+### Habilitando los logs en MariaDB
+
+Para habilitar los logs tendremos que estar en la consola de MariaDB y escribir la siguiente batería de comandos:
+
+```sql
+-- Indicamos que la salida de los logs será en un archivo:
+SET GLOBAL log_output = 'FILE';
+
+-- Especificamos la ruta del archivo donde se guardarán los logs:
+SET GLOBAL general_log_file='/var/log/mariadb/mariadb.log';
+
+-- Habilitamos los logs
+SET GLOBAL general_log = 'ON';
+```
+
+El nivel de _verbosity_ de los logs está establecido en 1 por defecto, pero tenemos 3 niveles: 1, 2 y 3. Para cambiar de nivel será tan sencillo como escribir el siguiente comando con el nivel necesitado, yo lo he dejado por defecto:
+
+```sql
+-- Verbosity level
+SET GLOBAL log_warnings = 1;
+```
+
+### Creando una base de datos y su única tabla de pruebas:
+
 Ahora podríamos crear una base de datos SQL:
 
 ```sql
+CREATE DATABASE rockydb;
 
+USE rockydb;
+
+CREATE TABLE rockytable (
+  opsys varchar(100),
+  used_in_practice_1 varchar(20),
+  used_in_practice_2 varchar(20),
+  used_in_practice_3 varchar(20),
+  primary key (opsys)
+);
+
+INSERT INTO rockytable values ('Rocky Linux', 'yes', 'yes', 'yes');
+INSERT INTO rockytable values ('FreeBSD', 'yes', 'yes', 'yes');
+INSERT INTO rockytable values ('Windows Server 2022', 'yes', 'yes', 'yes');
+INSERT INTO rockytable values ('Manjaro', 'yes', 'no', 'no');
+INSERT INTO rockytable values ('OpenSUSE', 'yes', 'no', 'no');
+INSERT INTO rockytable values ('Debian', 'yes', 'no', 'no');
+INSERT INTO rockytable values ('ZorinOS', 'no', 'no', 'no');
+INSERT INTO rockytable values ('Kali Linux', 'no', 'no', 'no');
+INSERT INTO rockytable values ('Alpine Linux', 'no', 'no', 'no');
+```
+
+Leamos la tabla:
+
+```sql
+SELECT * FROM rockytable;
+```
+
+![RockyDB](images/rocky_mariadb_select.png)
+
+### Creando un usuario que pueda leer la tabla:
+
+Ahora tenemos que crear un usuario y darle permisos para poder utilizarlo con el resto de software, como por ejemplo, un servidor PHP.
+
+```sql
+-- CREANDO EL USUARIO:
+-- CREATE USER 'miusuario'@localhost IDENTIFIED BY 'mipassword';
+CREATE USER 'phpuser'@localhost IDENTIFIED BY 'phpuser';
+
+/* Ahora le podemos dar permisos para que acceda sólo desde esta máquina o para que acceda desde cualquier punto de la red */
+
+-- Permisos desde la máquina:
+-- GRANT USAGE ON *.* TO 'miusuario'@localhost IDENTIFIED BY 'mipassword';
+GRANT USAGE, SELECT ON *.* TO 'phpuser'@localhost IDENTIFIED BY 'phpuser';
+
+-- Permisos desde la red:
+-- GRANT USAGE ON *.* TO 'miusuario'@'%' IDENTIFIED BY 'mipassword';
+GRANT USAGE, SELECT ON *.* TO 'phpuser'@'%' IDENTIFIED BY 'phpuser';
+```
+
+En caso de querer darle todos los privilegios al usuario en cuestion, introduciríamos el siguiente comando. Esto no lo vamos a hacer porque sería bastante absurdo. Veamos el comando:
+
+```sql
+GRANT ALL privileges ON 'mibbdd'.* TO 'miusuario'@localhost;
+```
+
+Finalmente, aplicamos los cambios:
+
+```sql
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+Ahora lo suyo sería comprobar que funciona el usuario y que podemos leer la base de datos. Esto lo haríamos tal que así:
+
+```bash
+mysql -u phpuser -p
+``` 
+
+```sql
+USE rockydb;
+SELECT * FROM rockytable;
 ```
 
 ## Servidor Apache y PhpMyAdmin
