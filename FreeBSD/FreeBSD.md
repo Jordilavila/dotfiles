@@ -284,6 +284,13 @@ echo "[global]
     valid users = usuario" >> /usr/local/etc/smb4.conf
 ```
 
+Ahora nos tocaría habilitar en el arranque el servicio de SAMBA y levantarlo:
+
+```bash
+sysrc samba_server_enable="YES"
+service samba_server start
+```
+
 Y, finalmente, reiniciamos el sistema.
 
 ## Servicio de impresión con CUPS

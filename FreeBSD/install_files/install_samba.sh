@@ -23,9 +23,9 @@ pkg install -y samba413-4.13.8_1
 touch /usr/local/etc/smb4.conf
 
 echo "[global]
-    workgroup = MYGROUP
-    realm = mygroup.local
-    netbios name = NAS
+    workgroup = WORKGROUP
+    realm = workgroup.local
+    netbios name = BSDSMB
 
 [usuario data]
     path = /home/usuario
@@ -34,5 +34,7 @@ echo "[global]
     printable = no
     guest ok = no
     valid users = usuario" >> /usr/local/etc/smb4.conf
+
+sysrc samba_server_enable="YES"
 
 echo "Please, reboot your system!"
