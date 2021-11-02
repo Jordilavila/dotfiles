@@ -79,7 +79,7 @@ openSUSE-Tumbleweed
 En mi caso, un perfil desarrollador, será necesario tener instalada la paquetería necesaria para compilar programas, al menos, en C. Para ello, instalaré lo siguiente:
 
 ```bash
-sudo zypper install gcc valgrind make gdb
+sudo zypper install gcc valgrind make gdb gcc-c++
 ```
 
 Si queremos más información sobre OpenSUSE, podemos acceder a [ésta](../OpenSUSE/OpenSUSE.md) parte del repositorio.
