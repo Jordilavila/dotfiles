@@ -604,7 +604,7 @@ Ahora bien, ¿y si queremos que nuestra web sea php? No habría ningún problema
 Una de las misiones que tenemos tras haber creado una base de datos en MariaDB o MySQL es mostrar la tabla que hemos creado en el navegador y esto lo podemos hacer mediante PHP. Para ello he preparado este archivo que guardaremos como index.php en el host virtual que corresponda:
 
 ```php
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
   <html>
   <body>
     <?php
