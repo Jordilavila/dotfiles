@@ -24,7 +24,62 @@ choco install nano grep
 
 Esto es una funcionalidad oculta de Windows en la que podemos crear una carpeta que recoja algunas funcionalidades del sistema. Ni aporta ni quita, pero es interesante para dejar a cuadros a los colegas. Para que funcione, creamos una carpeta en el escritorio con el nombre de ```GodMode.{ED7BA470-8E54-465E-825C-99712043E01C}.```.
 
-## Activando WSL2 e instalando un Linux en WSL
+## Puesta a punto de WSL
 
 A veces necesitamos usar Linux y no podemos tener montado el dual boot por espacio o por cualquier otra cosa. Tenemos una solución: usemos WSL (Windows Subsystem for Linux) e instalemos un sistema Linux como OpenSUSE.
 
+### Pasos previos
+
+El primer paso previo a la instalación de la WSL será comprobar que tenemos habilitada la virtualización. Para ello, abrimos el administrador de tareas, entramos a la sección de rendimiento y la pestalla de CPU nos aparecerá si la virtualización está activa o no.
+
+En caso de no estar activa, tendremos que acceder a la BIOS y activar dicha función.
+
+Una vez activada la virtualización, introduciremos el siguiente comando:
+
+```powershell
+Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
+```
+
+O bien, podemos acceder a _características de windows_ y activar:
+
+- Plataforma de virtualización de Windows
+- Plataforma del hipervidsor de Windows
+- Subsistema de Windows para Linux
+
+Finalmente, reiniciamos el sistema.
+
+### Instalación de WSL
+
+Para instalar WSL tendremos que abrir una powershell en modo de administrador e introducir la siguiente batería de comandos:
+
+```powershell
+# Listar las distribuciones disponibles:
+wsl -l -o
+
+# Instalar OpenSUSE Leap:
+wsl --install -d openSUSE-42
+```
+
+Otra opción que tenemos y la que **yo recomiendo** es entrar a la Tienda de Windows y bajarnos OpenSUSE Tumbleweed, ya que es el sistema que estoy usando en mi máquina principal y el que recibe las últimas actualizaciones.
+
+Finalmente, podemos comprobar nuestro sistema y la versión de WSL en la que está usando este comando:
+
+```powershell
+wsl --list -v
+```
+
+Este comando, al darnos el nombre del sistema que hemos instalado, nos brinda el modo de arrancarlo desde Powershell, que será tan sencillo como escribir lo siguiente en la Powershell:
+
+```powershell
+openSUSE-Tumbleweed
+```
+
+### Programas necesarios corriendo en el Linux
+
+En mi caso, un perfil desarrollador, será necesario tener instalada la paquetería necesaria para compilar programas, al menos, en C. Para ello, instalaré lo siguiente:
+
+```bash
+sudo zypper install gcc valgrind make gdb
+```
+
+Si queremos más información sobre OpenSUSE, podemos acceder a [ésta](../OpenSUSE/OpenSUSE.md) parte del repositorio.
