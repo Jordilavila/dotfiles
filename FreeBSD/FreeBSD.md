@@ -459,3 +459,10 @@ Tras esto tendremos que configurar algun aspecto más de la impresora. Tenemos q
 
 Finalmente, ya tenemos la impresora configurada.
 
+## Servidor Apache
+
+```bash
+pkg install -y apache24 openssl
+service apache24 enable
+service apache24 start
+```
