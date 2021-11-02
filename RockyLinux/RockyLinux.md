@@ -424,6 +424,18 @@ firewall-cmd --permanent --zone=public --add-service=https
 firewall-cmd --reload
 ```
 
+### Activando el modo debug en Apache
+
+Para activar los logs de apache, tendremos que dirigirnos al archivo ```/etc/httpd/conf/httpd.conf``` y cambiar la línea siguiente:
+
+```bash
+# Línea original:
+LogLevel warn
+
+# Línea final:
+LogLevel debug
+```
+
 ### Instalación de PHP y phpMyAdmin
 
 En esta herramienta va a ser necesaria para poder imprimir la base de datos en el navegador. Para instalar PHP vamos a usar la siguiente batería de comandos:
@@ -516,9 +528,133 @@ Finalmente, podemos acceder a phpMyAdmin en la dirección ```http://MI_IP/phpmya
 
 ![PhpMyAdmin](images/rocky_phpmyadmin.png)
 
+### Creando VirtualHosts
+
+Los _VirtualHosts_ son dominios ficticios alojados en un mismo servidor. Es decir, para una misma IP tendremos más de una página web. Lo primero que vamos a hacer con los hosts virtuales será crear las carpetas con las que vamos a trabajar, para ello usaremos el siguiente bloque de comandos:
+
+```bash 
+## Creando las carpetas
+mkdir -p /var/www/databasereader.host/html
+mkdir -p /var/www/chorizosalexa.es/html
+
+## Cambiando el propietario a apache
+chown -R apache:apache /var/www/databasereader.host/html
+chown -R apache:apache /var/www/chorizosalexa.es/html
+
+## Cambiando los permisos de las carpetas
+chmod -R 755 /var/www
+```
+
+Ahora vamos a colocar una página de prueba en cada una de las carpetas en cuestión:
+
+```bash
+touch /var/www/databasereader.host/html/index.html
+echo "Welcome to databasereader.host" >> /var/www/databasereader.host/html/index.html
+
+touch /var/www/chorizosalexa.es/html/index.html
+echo "Welcome to chorizosalexa.es" >> /var/www/chorizosalexa.es/html/index.html
+```
+
+Ahora tendríamos que habilitar estos host virtuales en el archivo de configuración. Para ello abrimos el archivo ```/etc/httpd/conf/httpd.conf``` y añadimos al final el bloque siguiente:
+
+```bash
+# DatabaseReader VirtualHost
+<VirtualHost *:80>
+  ServerName www.databasereader.host
+  ServerAlias databasereader.host
+  DocumentRoot /var/www/databasereader.host/html
+  ErrorLog /var/www/databasereader.host/error.log
+  CustomLog /var/www/databasereader.host/request.log combined
+</VirtualHost>
+
+# Chorizos Alexa VirtualHost
+<VirtualHost *:80>
+  ServerName www.chorizosalexa.es
+  ServerAlias chorizosalexa.es
+  DocumentRoot /var/www/chorizosalexa.es/html
+  ErrorLog /var/www/chorizosalexa.es/error.log
+  CustomLog /var/www/chorizosalexa.es/request.log combined
+</VirtualHost>
+```
+
+Tras esto, tendremos que reiniciar Apache y nos saldrá un error que no nos permitirá volver a levantar el servidor, para corregir esto, tendremos que usar estos comandos y funcionará todo:
+
+```bash
+setenforce 0
+systemctl restart httpd
+systemctl status httpd
+```
+
+Una vez tenemos el servidor web funcionando, tendremos que editar el archivo ```/etc/hosts``` y cambiar la línea del localhost tal que así:
+
+```bash
+# Línea original
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+
+# Línea final
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 chorizosalexa.es www.chorizosalexa.es databasereader.host www.databasereader.host
+```
+
+Ahora podríamos acceder a las dos webs desde el navegador del servidor sin ningún problema.
+
+Ahora bien, ¿y si queremos que nuestra web sea php? No habría ningún problema mientras PHP esté instalado en el servidor. Lo que tendríamos que hacer es cambiar el archivo ```index.html``` por un ```index.php``` y funcionaría igual.
+
 ### Creando una web en PHP que lea la base de datos
 
+Una de las misiones que tenemos tras haber creado una base de datos en MariaDB o MySQL es mostrar la tabla que hemos creado en el navegador y esto lo podemos hacer mediante PHP. Para ello he preparado este archivo que guardaremos como index.php en el host virtual que corresponda:
+
+```php
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+  <html>
+  <body>
+    <?php
+
+      $hostname = "localhost";
+      $username = "phpuser";
+      $password = "phpuser";
+      $db = "rockydb";
+
+      $dbconnect=mysqli_connect($hostname,$username,$password,$db);
+
+      if ($dbconnect->connect_error) {
+        die("Database connection failed: " . $dbconnect->connect_error);
+      }
+    ?>
+
+    <table border="1" align="center">
+      <tr>
+        <td>Operating System</td>
+        <td>Used in P1</td>
+        <td>Used in P2</td>
+        <td>Used in P3</td>
+      </tr>
+
+      <?php
+        $query = mysqli_query($dbconnect, "SELECT * FROM rockytable")
+           or die (mysqli_error($dbconnect));
+
+        while ($row = mysqli_fetch_array($query)) {
+          echo
+           "<tr>
+              <td>{$row['opsys']}</td>
+              <td>{$row['used_in_practice_1']}</td>
+              <td>{$row['used_in_practice_2']}</td>
+              <td>{$row['used_in_practice_3']}</td>
+           </tr>\n";
+        }
+      ?>
+    </table>
+  </body>
+</html>
+```
+
+Finalmente, reiniciamos el servidor web con ```systemctl restart httpd``` y volvemos a acceder a la web. Tendremos pintada la tabla de la base de datos que habríamos creado anteriormente. En caso de no salir la base de datos, pulsamos en el teclado ```CTRL + F5``` para que se refresque toda la página.
+
+![Reading the database with php](images/rocky_phpreadsdatabase.png)
+
 ### Creando una segunda web con Wordpress
+
+TODO
 
 ## TrueNAS + iSCSI
 
