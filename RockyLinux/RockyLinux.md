@@ -585,6 +585,18 @@ systemctl restart httpd
 systemctl status httpd
 ```
 
+Este comando será para un funcionamiento temporal, por lo que tendremos que hacerlo permanente accediendo al archivo ```/etc/sysconfig/selinux``` y editando la línea siguiente:
+
+```bash
+# Línea original:
+SELinux=enforcing
+
+# Línea a establecer:
+SELinux=permissive
+```
+
+Finalmente, reiniciamos el sistema.
+
 Una vez tenemos el servidor web funcionando, tendremos que editar el archivo ```/etc/hosts``` y cambiar la línea del localhost tal que así:
 
 ```bash
