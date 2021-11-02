@@ -459,10 +459,72 @@ Tras esto tendremos que configurar algun aspecto más de la impresora. Tenemos q
 
 Finalmente, ya tenemos la impresora configurada.
 
+## Servidor de bases de datos - PostgreSQL
+
+TODO
+
 ## Servidor Apache
 
+Es interesante poder lanzar páginas web desde nuestro servidor, por lo que vamos a instalar Apache y lanzar dos webs. Una web nos mostrará la tabla de MariaDB que hemos creado en el punto anterior y otra web montará un CMS.
+
+Para llevar a cabo todo esto, vamos a instalar Apache, PhpMyAdmin y todo el paquete PHP y, como CMS, Wordpress.
+
+### Instalando Apache
+
+Para poder llevar a cabo la implantación del servidor web, tendremos que habilitarlo. Para ello vamos a usar la siguiente batería de comandos:
+
 ```bash
+# Instalación de la paquetería necesaria:
 pkg install -y apache24 openssl
+
+# Habilitando y arrancando el servidor:
 service apache24 enable
 service apache24 start
+
+# Aviso: Puede que salten warnings, que no cunda el pánico
 ```
+
+### Activando el modo debug en Apache
+
+Para activar los logs de apache, tendremos que dirigirnos al archivo ```RUTA``` y cambiar la línea siguiente:
+
+```bash
+# Línea original:
+LogLevel warn
+
+# Línea final:
+LogLevel debug
+```
+
+### Configurando los VirtualHosts
+
+Los _VirtualHosts_ son dominios ficticios alojados en un mismo servidor. Es decir, para una misma IP tendremos más de una página web. Lo primero que vamos a hacer con los hosts virtuales será crear las carpetas con las que vamos a trabajar, para ello usaremos el siguiente bloque de comandos:
+
+```bash 
+## Creando las carpetas
+mkdir -p /var/www/databasereader.host/html
+mkdir -p /var/www/chorizosalexa.es/html
+
+## Cambiando el propietario a apache
+chown -R apache:apache /var/www/databasereader.host/html
+chown -R apache:apache /var/www/chorizosalexa.es/html
+
+## Cambiando los permisos de las carpetas
+chmod -R 755 /var/www
+```
+
+Ahora tocaría acceder de nuevo al archivo de configuración de Apache para habilitar la inclusión del archivo externo donde especificaremos los VirtualHosts:
+
+```bash
+# Acceso al archivo:
+nano /usr/local/etc/apache24/httpd.conf
+
+### Bloque original:
+# Virtual hosts
+#Include etc/apache24/extra/httpd-vhosts.conf
+
+# Virtual hosts
+Include etc/apache24/extra/httpd-vhosts.conf
+```
+
+https://comoinstalar.me/como-instalar-apache-en-freebsd-12/
