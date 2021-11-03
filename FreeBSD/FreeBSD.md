@@ -486,7 +486,7 @@ service apache24 start
 
 ### Activando el modo debug en Apache
 
-Para activar los logs de apache, tendremos que dirigirnos al archivo ```RUTA``` y cambiar la línea siguiente:
+Para activar los logs de apache, tendremos que dirigirnos al archivo ```/usr/local/etc/apache24/httpd.conf``` y cambiar la línea siguiente:
 
 ```bash
 # Línea original:
@@ -502,15 +502,13 @@ Los _VirtualHosts_ son dominios ficticios alojados en un mismo servidor. Es deci
 
 ```bash 
 ## Creando las carpetas
-mkdir -p /var/www/databasereader.host/html
-mkdir -p /var/www/chorizosalexa.es/html
-
-## Cambiando el propietario a apache
-chown -R apache:apache /var/www/databasereader.host/html
-chown -R apache:apache /var/www/chorizosalexa.es/html
+mkdir -p /usr/local/docs/databasereader.host/public_html
+mkdir -p /usr/local/docs/chorizosalexa.es/public_html
+mkdir -p /var/log/databasereader.host/
+mkdir -p /var/log/chorizosalexa.es/
 
 ## Cambiando los permisos de las carpetas
-chmod -R 755 /var/www
+chmod -R 755 /usr/local/docs
 ```
 
 Ahora tocaría acceder de nuevo al archivo de configuración de Apache para habilitar la inclusión del archivo externo donde especificaremos los VirtualHosts:
@@ -525,6 +523,38 @@ nano /usr/local/etc/apache24/httpd.conf
 
 # Virtual hosts
 Include etc/apache24/extra/httpd-vhosts.conf
+```
+
+Ahora tendríamos que guardarnos una copia del archivo de los virtual hosts y luego abrir el archivo:
+
+```bash
+# Guardando una copia:
+cp /usr/local/etc/apache24/extra/httpd-vhosts.conf /usr/local/etc/apache24/extra/httpd-vhosts.conf.backup
+
+# Abriendo el archivo original:
+nano /usr/local/etc/apache24/extra/httpd-vhosts.conf
+```
+
+Una vez hemos abierto el archivo original, yo le he añadido estos VirtualHosts:
+
+```bash
+# DatabaseReader VirtualHost
+<VirtualHost *:80>
+  ServerName www.databasereader.host
+  ServerAlias databasereader.host
+  DocumentRoot /usr/local/docs/databasereader.host/public_html
+  ErrorLog /var/log/databasereader.host/error.log
+  CustomLog /var/log/databasereader.host/request.log common
+</VirtualHost>
+
+# Chorizos Alexa VirtualHost
+<VirtualHost *:80>
+  ServerName www.chorizosalexa.es
+  ServerAlias chorizosalexa.es
+  DocumentRoot /usr/local/docs/chorizosalexa.es/public_html
+  ErrorLog /var/log/chorizosalexa.es/error.log
+  CustomLog /var/log/chorizosalexa.es/request.log common
+</VirtualHost>
 ```
 
 https://comoinstalar.me/como-instalar-apache-en-freebsd-12/
