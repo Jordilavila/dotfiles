@@ -181,10 +181,7 @@ service sshd restart
 
 Para general las claves públicas y privadas debemos hacer lo siguiente:
 
-```bash 
-# Escalar superusuario:
-su -
-
+```bash
 # Generar claves pública y privada en el directorio /home/root/.ssd
 ssh-keygen -t rsa
 
