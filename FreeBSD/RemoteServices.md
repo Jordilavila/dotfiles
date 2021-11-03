@@ -77,4 +77,68 @@ scp <-P <puerto>> <ruta de archivo local> REMOTE_USER@REMOTE_IP:<ruta destino>
 
 ## VNC
 
+VNC es un programa de software libre basado en una estructura cliente-servidor que permite observar las acciones del ordenador servidor remotamente a través de un ordenador cliente. VNC no impone restricciones en el sistema operativo del ordenador servidor con respecto al del cliente: es posible compartir la pantalla de una máquina con cualquier sistema operativo que admita VNC conectándose desde otro ordenador o dispositivo que disponga de un cliente VNC portado.
+
+Esto nos puede ser insteresante de instalar por el mismo motivo que hemos instalado SSH, para acceder remotamente a nuestro servidor. Pero, en este caso, para tener acceso al escritorio.
+
+### Servidor
+
+VNC en el lado de la máquina servidor.
+
+#### Instalación del servidor VNC
+
+Lo primero que tendremos que hacer será actualizar el sistema e instalar VNC:
+
+```bash
+pkg update && pkg upgrade -y
+pkg install -y x11vnc
+```
+
+#### Configurando y lanzando el servidor
+
+Lo primero que vamos a configurar en el servidor es una contraseña, para ello usaremos el siguiente comando (nunca desde el usuario root):
+
+```bash
+x11vnc -storepasswd
+```
+
+Luego, para lanzarlo, podemos usar un script de bash que he escrito para ello, pero tendríamos que revisarlo para que funcione bien acorde a nuestro usuario:
+
+```bash
+# Descargando el script
+wget https://github.com/Jordilavila/dotfiles/raw/main/FreeBSD/install_files/vnc_server_launch.sh
+
+# Arrancando el servidor con el script:
+bash vnc_server_launch.sh
+```
+
+El otro modo de lanzarlo sería este:
+
+```bash
+x11vnc -shared -rfbauth /home/usuario/.vnc/passwd -noxdamage -geometry 1024x768
+```
+
+### Cliente
+
+VNC en el lado de la máquina cliente.
+
+#### Instalación del cliente VNC
+
+Para instalar el cliente VNC introduciremos los siguientes comandos en el sistema FreeBSD Cliente:
+
+```bash
+pkg update && pkg upgrade -y
+pkg install -y tigervnc-viewer
+```
+
+#### Lanzando el cliente VNC para conectarnos al servidor
+
+Para lanzar el cliente VNC usaremos este comando:
+
+```bash
+vncviewer usuario@192.168.137.221:5900
+```
+
+Se nos pedirá la contraseña que hemos establecido en la máquina remota y podremos acceder a ella para tener el control absoluto sobre la misma. 
+
 ## RDP
