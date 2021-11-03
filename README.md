@@ -11,6 +11,7 @@ Mis dotfiles para mis sistemas operativos favoritos o aquellos que he usado más
 - [FreeBSD](FreeBSD/FreeBSD.md)
 - [OpenSUSE](OpenSUSE/OpenSUSE.md)
 - [Rocky Linux](RockyLinux/RockyLinux.md)
+- [Windows 11](Windows11/Windows11.md)
 - [Windows Server](WindowsServer2022/WindowsServer2022.md)
 
 ## Herramientas externas
