@@ -81,13 +81,13 @@ VNC es un programa de software libre basado en una estructura cliente-servidor q
 
 Esto nos puede ser insteresante de instalar por el mismo motivo que hemos instalado SSH, para acceder remotamente a nuestro servidor. Pero, en este caso, para tener acceso al escritorio.
 
-### Instalación de VNC y revisión del firewall
+### Instalación del servidor VNC y revisión del firewall
 
 Lo primero que tendremos que hacer será actualizar el sistema e instalar VNC:
 
 ```bash
 dnf update -y
-dnf install -y tigervnc-server
+dnf install -y tigervnc-server tigervnc-server-module
 ```
 
 Ahora tendríamos que habilitar el paso por el firewall:
@@ -97,9 +97,50 @@ firewall-cmd --add-service=vnc-server
 firewall-cmd --runtime-to-permanent
 ```
 
-### Estableciendo un passwd y configurando VNC
+### Estableciendo un passwd y configurando el servidor VNC
 
-Lo primero que haremos tras la instalación de VNC será establecer una contraseña para el usuario con ```vncpasswd```
+Lo primero que haremos tras la instalación de VNC será establecer una contraseña para el usuario con ```vncpasswd```. Tras esto crearemos el archivo de configuración ubicado en ```~/.vnc/config``` y lo editaremos.
 
+```bash
+## VNC Config File
+session=gnome
+securitytypes=vncauth,tlsvnc
+desktop=sandbox
+geometry=1024x768
+alwaysshared
+```
+
+Ahora tendríamos que configurar los usuarios editando un fichero de configuración en ```/etc/tigervnc/vncserver.users```. Yo he añadido esto al final del archivo:
+
+```bash
+# Importante:
+# El número de display 1 escucha en el puerto 5901
+# Esto se debe a esta fórmula matemática:
+# display_number + 5900 = puerto_de_escucha
+# 
+# Y la sintaxis es la siguiente:
+# <display>=<username>
+:1=usuario
+```
+
+Finalmente, reiniciamos el servicio y lo habilitamos en el arranque:
+
+```bash
+systemctl restart vncserver@:1.service
+systemctl start vncserver@:1.service
+```
+
+### Instalación del cliente VNC en nuestro cliente Rocky
+
+Para instalar el cliente de VNC en nuestro cliente Rocky, introduciremos los siguientes comandos en la consola:
+
+```bash
+dnf update -y
+dnf install -y tigervnc
+```
+
+Ahora ya tendríamos el cliente VNC funcionando y nos podríamos conectar:
+
+![VNC_Client](images/rocky_clientvnc.png)
 
 ## RDP
