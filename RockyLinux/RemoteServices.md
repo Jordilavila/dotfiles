@@ -45,9 +45,6 @@ systemctl restart sshd
 Para general las claves públicas y privadas debemos hacer lo siguiente:
 
 ```bash 
-# Escalar superusuario:
-su -
-
 # Generar claves pública y privada en el directorio /home/root/.ssd
 ssh-keygen -t rsa
 
@@ -79,5 +76,30 @@ scp <-P <puerto>> <ruta de archivo local> REMOTE_USER@REMOTE_IP:<ruta destino>
 ```
 
 ## VNC
+
+VNC es un programa de software libre basado en una estructura cliente-servidor que permite observar las acciones del ordenador servidor remotamente a través de un ordenador cliente. VNC no impone restricciones en el sistema operativo del ordenador servidor con respecto al del cliente: es posible compartir la pantalla de una máquina con cualquier sistema operativo que admita VNC conectándose desde otro ordenador o dispositivo que disponga de un cliente VNC portado.
+
+Esto nos puede ser insteresante de instalar por el mismo motivo que hemos instalado SSH, para acceder remotamente a nuestro servidor. Pero, en este caso, para tener acceso al escritorio.
+
+### Instalación de VNC y revisión del firewall
+
+Lo primero que tendremos que hacer será actualizar el sistema e instalar VNC:
+
+```bash
+dnf update -y
+dnf install -y tigervnc-server
+```
+
+Ahora tendríamos que habilitar el paso por el firewall:
+
+```bash
+firewall-cmd --add-service=vnc-server
+firewall-cmd --runtime-to-permanent
+```
+
+### Estableciendo un passwd y configurando VNC
+
+Lo primero que haremos tras la instalación de VNC será establecer una contraseña para el usuario con ```vncpasswd```
+
 
 ## RDP
