@@ -137,10 +137,10 @@ ssh-keygen -t rsa
 # Acceder al directorio donde están las claves:
 cd .ssh
 
-# Servidor Linux/Unix: Enviar al ordenador destino las claves para que se conecte sin pedirle la contraseña.
+# USANDO UN SERVIDOR LINUX/UNIX: Enviar al ordenador destino las claves para que se conecte sin pedirle la contraseña.
 type id_rsa.pub | ssh REMOTE_USER@REMOTE_IP "cat >> /home/REMOTE_USER/.ssh/authorized_keys"
 
-# Servidor Windows: Enviar al ordenador destino las claves para que se conecte sin pedirle la contraseña.
+# USANDO UN SERVIDOR WINDOWS: Enviar al ordenador destino las claves para que se conecte sin pedirle la contraseña.
 Get-Service ssh-agent | Set-Service -StartupType Manual
 Start-Service ssh-agent
 ssh-add id_rsa
