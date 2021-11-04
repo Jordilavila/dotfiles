@@ -23,7 +23,7 @@ pkg upgrade
 Creo necesario instalar alguna paquetería de uso esencial como podría ser algún editor de texto de terminal como ```nano``` o la herramienta ```wget```. A continuación la manera de descargar estos paquetes necesarios sin los que el resto del tutorial no va a funcionar:
 
 ```bash
-pkg install -y nano wget
+pkg install -y nano wget sudo
 ```
 
 ### Instalación de KDE
