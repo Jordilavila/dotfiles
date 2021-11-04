@@ -285,6 +285,72 @@ Finalmente, reiniciamos el servidor web con ```service apache24 restart``` y vol
 
 ![Reading the database with php](images/freebsd_phpreadsdatabase.png)
 
+### Instalando MariaDB
+
+Puede ser que no nos funcione bien Joomla con PostgreSQL, por eso también instalo MariaDB. Por regla general los CMS suelen trabajar con bases de datos en MySQL o MariaDB, nuestro CMS no iba a ser menos.
+
+Para instalar MariaDB introduciremos la siguiente batería de comandos:
+
+```bash
+# Actualizando el sistema
+pkg update && pkg upgrade -y
+
+# Instalación de MariaDB
+pkg install -y mariadb105-server php74-mysqli
+```
+
+```bash 
+# Habilitando el servicio
+service mysql-server enable
+
+# Estableciendo permisos en la carpeta
+chown mysql /var/run/mysql/
+
+# Arrancando el servicio
+service mysql-server start
+
+# Comprobando el estado del servicio
+service mysql-server status
+
+# Si el estado del servicio es correcto, iniciamos la instalación:
+mysql_secure_installation
+```
+
+Tras instalar MariaDB, tendremos que configurar el servidor de bases de datos:
+
+```bash
+# Acceder al servidor
+mysql -u root -p
+```
+
+Activando los logs:
+
+```sql
+-- Indicamos que la salida de los logs será en un archivo:
+SET GLOBAL log_output = 'FILE';
+
+-- Especificamos la ruta del archivo donde se guardarán los logs (tendremos que crearlo y darle permisos):
+SET GLOBAL general_log_file='/var/log/mariadb/mariadb.log';
+
+-- Habilitamos los logs
+SET GLOBAL general_log = 'ON';
+```
+
+Ahora vamos a crear al usuario _joomlauser_ y la base de datos de Joomla:
+
+```sql
+-- CREANDO EL USUARIO:
+CREATE USER 'joomlauser'@localhost IDENTIFIED BY 'joomlauser';
+
+-- CREANDO LA BASE DE DATOS DE JOOMLA Y DANDO PRIVILEGIOS AL USUARIO:
+CREATE DATABASE db_joomla;
+GRANT ALL ON db_joomla.* TO 'joomlauser'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+Ahora ya tenemos la base de datos de MariaDB o MySQL montada.
+
 ### Instalando Joomla
 
 Joomla es el CMS que usaremos con FreeBSD. Para descargar e instalar Joomla en nuestro servidor usaremos la siguiente batería de comandos:
