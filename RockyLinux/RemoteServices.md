@@ -99,7 +99,7 @@ firewall-cmd --runtime-to-permanent
 
 ### Estableciendo un passwd y configurando el servidor VNC
 
-Lo primero que haremos tras la instalación de VNC será establecer una contraseña para el usuario con ```vncpasswd```. Tras esto crearemos el archivo de configuración ubicado en ```~/.vnc/config``` y lo editaremos.
+Lo primero que haremos tras la instalación de VNC será crear un nuevo usuario con el comando ```useradd vncuser``` y establecer una contraseña para dicho usuario con ```passwd vncuser```. Luego nos loguearemos en dicho usuario y con ```vncpasswd``` crearemos una contraseña para establecer la conexión remota. Tras esto crearemos el archivo de configuración ubicado en ```~/.vnc/config``` y lo editaremos.
 
 ```bash
 ## VNC Config File
@@ -120,7 +120,7 @@ Ahora tendríamos que configurar los usuarios editando un fichero de configuraci
 # 
 # Y la sintaxis es la siguiente:
 # <display>=<username>
-:1=usuario
+:1=vncuser
 ```
 
 Finalmente, reiniciamos el servicio y lo habilitamos en el arranque:
