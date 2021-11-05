@@ -21,6 +21,8 @@ Mis dotfiles para mis sistemas operativos favoritos o aquellos que he usado más
 
 ## Badges:
 
+Aquí un listado de los _badges_ que he utlizo en el proyecto.
+
 ### OS:
 
 ![Free BSD](https://img.shields.io/badge/FreeBSD-B50000?style=for-the-badge&logo=freebsd&logoColor=white)  
@@ -48,6 +50,9 @@ Mis dotfiles para mis sistemas operativos favoritos o aquellos que he usado más
 
 ![OpenVPN](https://img.shields.io/badge/OpenVPN-1a3967?style=for-the-badge&logo=openvpn)  
 ![OpenVPN](https://img.shields.io/badge/OpenVPN-1a3967?style=flat-square&logo=openvpn)  
+
+![Oracle DB Express](https://img.shields.io/badge/Oracle%20DB%20Express-F80000?style=for-the-badge&logo=oracle&logoColor=white)  
+![Oracle DB Express](https://img.shields.io/badge/Oracle%20DB%20Express-F80000?style=flat-square&logo=oracle&logoColor=white)  
 
 ![PHP](https://img.shields.io/badge/PHP-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)  
 ![PHP](https://img.shields.io/badge/PHP-%23777BB4.svg?style=flat-square&logo=php&logoColor=white)  
