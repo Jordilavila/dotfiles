@@ -177,7 +177,7 @@ En esta herramienta va a ser necesaria para poder imprimir la base de datos en e
 ```bash
 dnf module reset php
 dnf module enable php:7.4
-dnf install -y php php-common php-opcache php-cli php-gd php-curl php-mysqlnd php-xml
+dnf install -y php php-common php-opcache php-cli php-gd php-curl php-mysqlnd php-xml php-zip php-intl php-json php-ldap php-mbstring
 ```
 
 Ahora descargamos y descomprimimos phpMyAdmin:
@@ -203,7 +203,15 @@ cd /usr/share/phpmyadmin
 mv config.sample.inc.php config.inc.php
 ```
 
-Ahora tendríamos que generar una clave de 32 bits, copiarla y añadirla en el archivo que hemos movido antes:
+Ahora tendríamos que crear un nuevo directorio temporal con los permisos necesarios usando los comandos siguientes:
+
+```bash
+mkdir /usr/share/phpmyadmin/tmp
+chown -R apache:apache /usr/share/phpmyadmin
+chmod 777 /usr/share/phpmyadmin/tmp
+```
+
+Finalmente, tendríamos que generar una clave de 32 bits, copiarla y añadirla en el archivo que hemos movido antes (:warning: Esto no lo hace el script de instalación):
 
 ```bash
 # Generar clave:
@@ -214,14 +222,6 @@ nano config.inc.php
 
 # Línea donde pegar la clave:
 cfg['blowfish_secret'] = 'CLAVE';
-```
-
-Ahora tendríamos que crear un nuevo directorio temporal con los permisos necesarios usando los comandos siguientes:
-
-```bash
-mkdir /usr/share/phpmyadmin/tmp
-chown -R apache:apache /usr/share/phpmyadmin
-chmod 777 /usr/share/phpmyadmin/tmp
 ```
 
 ### Creando los archivos de configuración de Apache
