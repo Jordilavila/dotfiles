@@ -132,11 +132,23 @@ systemctl start vncserver@:1.service
 
 ### Instalación del cliente VNC en nuestro cliente Rocky
 
-Para instalar el cliente de VNC en nuestro cliente Rocky, introduciremos los siguientes comandos en la consola:
+Para instalar el cliente de VNC en nuestro cliente Rocky podremos hacer varias cosas. 
+
+Una opción sería introducir los siguientes comandos en la consola para instalar TigerVNC Client:
 
 ```bash
 dnf update -y
 dnf install -y tigervnc
+```
+
+La otra opción sería descargarnos VNC Client e instalarlo en nuestra máquina, que es lo que yo he hecho porque es con lo que suelo trabajar para conectarme a mi PC de manera remota:
+
+```bash
+# Descargamos el paquete:
+wget https://www.realvnc.com/download/file/viewer.files/VNC-Viewer-6.21.920-Linux-x64.rpm -O VNC-Viewer.rpm
+
+# Instalamos el paquete:
+dnf install -y VNC-Viewer.rpm
 ```
 
 Ahora ya tendríamos el cliente VNC funcionando y nos podríamos conectar:
