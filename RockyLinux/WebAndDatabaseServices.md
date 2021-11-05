@@ -461,3 +461,7 @@ Tras seleccionar el idioma nos pedirá datos sobre la base de datos para poderse
 Tras acceder con el usuario de administrador se nos abrirá el panel de control de Wordpress:
 
 ![Wordpress Control Panel](images/rocky_wordpress_controlpanel.png)
+
+### Creando una tercera web con Joomla
+
+Por otra parte, en caso de querer instalar Joomla 
