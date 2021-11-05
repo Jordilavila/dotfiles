@@ -172,7 +172,14 @@ LogLevel debug
 
 ### Instalación de PHP y phpMyAdmin
 
-En esta herramienta va a ser necesaria para poder imprimir la base de datos en el navegador. Para instalar PHP vamos a usar la siguiente batería de comandos:
+En esta herramienta va a ser necesaria para poder imprimir la base de datos en el navegador. Podemos usar un script que he preparado para instalar PHP, pero ojo con el _warning_ que hay unas líneas más abajo:
+
+```bash
+wget https://raw.githubusercontent.com/Jordilavila/dotfiles/main/RockyLinux/install_files/install_php.sh
+sh install_php.sh
+```
+
+Por otra parte, también podemos introducir los comandos nosotros mismos para instalar PHP:
 
 ```bash
 dnf module reset php
@@ -211,7 +218,8 @@ chown -R apache:apache /usr/share/phpmyadmin
 chmod 777 /usr/share/phpmyadmin/tmp
 ```
 
-Finalmente, tendríamos que generar una clave de 32 bits, copiarla y añadirla en el archivo que hemos movido antes (:warning: Esto no lo hace el script de instalación):
+:warning: Esto no lo hace el script de instalación.  
+Finalmente, tendríamos que generar una clave de 32 bits, copiarla y añadirla en el archivo que hemos movido antes:
 
 ```bash
 # Generar clave:
