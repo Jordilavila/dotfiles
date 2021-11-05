@@ -219,7 +219,7 @@ chmod 777 /usr/share/phpmyadmin/tmp
 ```
 
 :warning: Esto no lo hace el script de instalación.  
-Finalmente, tendríamos que generar una clave de 32 bits, copiarla y añadirla en el archivo que hemos movido antes:
+Ahora, tendríamos que generar una clave de 32 bits, copiarla y añadirla en el archivo que hemos movido antes:
 
 ```bash
 # Generar clave:
@@ -473,4 +473,50 @@ Tras acceder con el usuario de administrador se nos abrirá el panel de control 
 
 ### Creando una tercera web con Joomla
 
-Por otra parte, en caso de querer instalar Joomla 
+Por otra parte, en caso de querer instalar Joomla tendremos que configurar un nuevo virtual host y hacer lo siguiente:
+
+Lo primero será crear un usuario y una base de datos:
+
+```bash
+# Entramos al usuario root de MySQL/MariaDB:
+mysql -u root -p
+```
+
+```sql
+-- Creamos la base de datos:
+CREATE DATABASE joomla_db;
+
+-- Creamos el usuario:
+CREATE USER 'joomla_user'@localhost IDENTIFIED BY 'joomla_user';
+
+-- Le damos privilegios sobre esa base de datos:
+GRANT ALL privileges ON joomla_db.* TO 'joomla_user'@localhost;
+
+-- Aplicamos los cambios:
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+Ahora nos tenemos que descargar Joomla e instalarlo en el directorio correspondiente:
+
+```bash
+# Descargamos Joomla:
+wget https://downloads.joomla.org/cms/joomla4/4-0-4/Joomla_4-0-4-Stable-Full_Package.zip -O joomla4.zip
+
+# Lo descomprimimos en el directorio correcto:
+unzip joomla4.zip -d /var/www/asorc.net/html/joomla
+
+# Le cambiamos el propietario y le damos permisos:
+chown -R apache:apache /var/www/asorc.net
+
+# Le damos permisos:
+chmod -R 775 /var/www/asorc.net
+```
+
+Ahora, simplemente reiniciamos el servicio con ```systemctl restart httpd``` y tendremos Joomla listo.
+
+![Joomla Control Panel](images/rocky_joomla_controlpanel.png)
+
+La captura anterior es el panel de administración de Joomla, el cual usaremos para administrar el sitio web. Y, en la captura siguiente tenemos nuestra web:
+
+![Joomla Web](images/rocky_joomla_web.png)
