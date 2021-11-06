@@ -116,5 +116,18 @@ Para activar el servidor IIS tendremos que acceder al panel de administración d
 
 Finalmente, podemos probar la instalación accediendo a _localhost_ desde el navegador del servidor y desde un cliente.
 
+### Configurando un VirtualHost
+
+La configuración no tiene pérdida. Se lleva a cabo desde el _Administrador de Internet Information Services_. Sólo tendremos que hacer click derecho sobre la capeta _sitios_ (situada en la parte izquierda) y seleccionar la opción de _Agregar sitio web_. Tras esto lo único que tendremos que hacer es seguir los pasos.
+
+![ISS ADD VIRTUALHOST](images/ws_add_virtualhost.png)
+
+Previamente tendremos que tener creadas las carpetas de los dominios virtuales en la ruta ```C:/inetpub/wwwroot/```.
+
+Ahora tendremos que modificar el archivo ```C:/Windows/System32/drivers/etc/hosts``` y le añadiremos lo siguiente:
+
+```bash
+127.0.0.1   www.MIWEB.com
+```
 
 
