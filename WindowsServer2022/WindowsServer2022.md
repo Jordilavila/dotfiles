@@ -164,7 +164,7 @@ get-acl C:\ProgramData\ssh\ssh_host_dsa_key | set-acl C:\ProgramData\ssh\adminis
 # Leemos y guardamos la clave pública en una variable.
 $public_key = Get-Content ~/.ssh/id_rsa.pub
 # Añadimos la clave pública a administrators_authorized_keys en el servidor:
- ssh administrador@192.168.137.223 "'$($public_key)' | Out-File C:\ProgramData\ssh\administrators_authorized_keys -Encoding UTF8 -Append
+ssh administrador@192.168.137.223 "'$($public_key)' | Out-File C:\ProgramData\ssh\administrators_authorized_keys -Encoding UTF8 -Append"
 ```
 
 ### Funcionamiento de SFTP
