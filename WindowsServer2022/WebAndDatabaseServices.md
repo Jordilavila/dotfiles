@@ -105,3 +105,16 @@ SELECT * FROM wintable;
 ```
 
 ![WinDB](images/ws_oracleexpress_select.png)
+
+### Instalando el Servidor IIS
+
+_Internet Information Server_ (IIS) es un servidor web que provee un conjunto de servicios para sistemas operativos Windows. IIS ofrece soporte para los protocolos HTTP, HTTPS, FTP, FTPS, SMTP y NNTP. Resumidamente, es un Apache o NGinx versión Microsoft.
+
+Para activar el servidor IIS tendremos que acceder al panel de administración del servidor, entrar en la opción de agregar roles y características y activar el servidor IIS. Además, es recomendable activar estas opciones:
+
+![ISS Options](images/ws_iis_servicios_rol.png)
+
+Finalmente, podemos probar la instalación accediendo a _localhost_ desde el navegador del servidor y desde un cliente.
+
+
+
