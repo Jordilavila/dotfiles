@@ -220,7 +220,7 @@ Para instalar PHP usaremos la siguiente batería de comandos:
 
 ```bash
 pkg update && pkg upgrade -y
-pkg install -y php74-{curl,iconv,json,mbstring,session,simplexml,xml,zip,zlib,pgsql}
+pkg install -y php74-{bcmath,curl,ctype,dom,exif,fileinfo,filter,gd,iconv,json,mbstring,session,simplexml,xml,zip,zlib,openssl,pecl-imagick,pgsql}
 pkg install mod_php74
 ```
 
@@ -393,3 +393,45 @@ Ahora tendremos que editar el virtual host de chorizosalexa.es para que entre a 
 Tras esto, reiniciamos apache con el comando ```service apache24 restart``` y entramos a la web:
 
 ![Chorizos Alexa init config](images/freebsd_joomla_init.png)
+
+### Instalando WordPress
+
+Otra opción a contemplar es instalar el CMS WordPress en nuestro sistema. Para llevarlo a cabo tendremos que crear un nuevo virtualhost, en este caso para la web ```www.asorc.net``` y seguir la batería de comandos que sigue:
+
+Lo primero será crear una base de datos y un usuario en MariaDB para Wordpress:
+
+```bash
+# Entrar al usuario root de MariaDB
+mysql -u root -p
+```
+
+```sql
+-- Creamos la base de datos para WordPress:
+CREATE DATABASE wordpress_db charset utf8mb4 collate utf8mb4_unicode_ci;
+
+-- Creamos el usuario para WordPress:
+CREATE USER 'wordpress_user'@'localhost' IDENTIFIED BY 'wordpress_user';
+
+-- Le damos permiso al usuario sobre dicha base de datos:
+GRANT ALL PRIVILEGES ON wordpress_db.* TO 'wordpress_user'@'localhost';
+
+-- Guardamos privilegios y cerramos:
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+```bash
+# Descargamos WordPress:
+wget https://wordpress.org/latest.tar.gz -O wordpress.tar.gz
+
+# Descomprimimos el fichero:
+tar -xvf wordpress.tar.gz -C /usr/local/docs/asorc.net/public_html
+
+# Restauramos la propiedad:
+chown -R www:www /usr/local/docs/asorc.net/public_html
+```
+
+Ahora, reiniciamos el servicio de Apache para que los cambios tengan efecto: ```service apache24 restart```. Tras esto, habiendo añadido previamente el host local al listado de ```hosts```, podremos acceder al instalador de WordPress, seguir los pasos e instalar este nuevo CMS en nuestra máquina.
+
+
+![Wordpress Web](images/freebsd_wordpress.png)
