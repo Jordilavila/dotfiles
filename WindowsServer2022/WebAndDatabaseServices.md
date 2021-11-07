@@ -171,7 +171,7 @@ PHP instalado y preparado. Ahora toca revisar la configuración de PHP. Tendremo
         extension=pdo_odbc
     ```
 
-¿Cómo podemos establecer que IIS abra por defecto un archivo _.php_? Muy senciollo. En la configuración del sitio accedemos a la opción de _documento predeterminado_ y añadimos _index.php_.
+¿Cómo podemos establecer que IIS abra por defecto un archivo _.php_? Muy sencillo: en la configuración del sitio accedemos a la opción de _documento predeterminado_ y añadimos _index.php_.
 
 Ahora bien, para leer con PHP la base de datos que hemos creado, usamos el siguiente script:
 
