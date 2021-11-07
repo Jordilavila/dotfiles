@@ -112,6 +112,8 @@ _Internet Information Server_ (IIS) es un servidor web que provee un conjunto de
 
 Para activar el servidor IIS tendremos que acceder al panel de administración del servidor, entrar en la opción de agregar roles y características y activar el servidor IIS. Además, es recomendable activar estas opciones:
 
+TODO https://perez987.es/instalar-php-en-iis-de-windows-10/
+
 ![ISS Options](images/ws_iis_servicios_rol.png)
 
 Finalmente, podemos probar la instalación accediendo a _localhost_ desde el navegador del servidor y desde un cliente.
@@ -130,4 +132,99 @@ Ahora tendremos que modificar el archivo ```C:/Windows/System32/drivers/etc/host
 127.0.0.1   www.MIWEB.com
 ```
 
+### Instalación de PHP
 
+Las últimas versiones de PHP que se podían instalar con un instalador _.msi_ se quedaron la versión 5. Actualmente está la versión 8, que es la que vamos a instalar. La instalación de PHP se hace descargando un archivo _.zip_ y descomprimiéndolo en el disco duro, configurando el _PATH_ del sistema y bla bla bla. 
+
+Olvídate:
+
+```powershell
+choco install -y php
+```
+
+PHP instalado y preparado. Ahora toca revisar la configuración de PHP. Tendremos que acceder al archivo _PHP.ini_, ubicado en la ruta ```C:/tools/php80```.
+
+- Descomentar el directorio de extensiones:
+
+    ```powershell
+        fastcgi.impersonate = 1
+        cgi.fix_pathinfo = 0
+        cgi.force_redirect = 0
+        open_basedir = "C:\inetpuc\wwwroot"
+        error_log = php_errors.log
+        extension_dir = "ext"
+    ```
+
+- Asegurarnos de habilitar las extensiones siguientes:
+
+    ```powershell
+        extension=curl
+        extension=fileinfo
+        extension=gd
+        extension=intl
+        extendion=mbstring
+        extension=oci8_19
+        extension=odbc
+        extension=openssl
+        extension=pdo_mysql
+        extension=pdo_oci
+        extension=pdo_odbc
+    ```
+
+¿Cómo podemos establecer que IIS abra por defecto un archivo _.php_? Muy senciollo. En la configuración del sitio accedemos a la opción de _documento predeterminado_ y añadimos _index.php_.
+
+Ahora bien, para leer con PHP la base de datos que hemos creado, usamos el siguiente script:
+
+```php
+<!DOCTYPE HTML>
+<html>
+
+<body>
+  <center>
+    <?php
+    $db_user = "phpuser";
+    $db_pass = "phpuser";
+    $conexión = oci_connect($db_user, $db_pass, 'localhost/XE');
+    if (!$conexión) {
+      $e = oci_error();
+      trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+    }
+
+    // Preparar la sentencia
+    $stid = oci_parse($conexión, 'SELECT * FROM wintable');
+    if (!$stid) {
+      $e = oci_error($conexión);
+      trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+    }
+
+    // Realizar la lógica de la consulta
+    $r = oci_execute($stid);
+    if (!$r) {
+      $e = oci_error($stid);
+      trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);
+    }
+
+    // Obtener los resultados de la consulta
+    print "<table border='1'>\n";
+    while ($fila = oci_fetch_array($stid, OCI_ASSOC + OCI_RETURN_NULLS)) {
+      print "<tr>\n";
+      foreach ($fila as $elemento) {
+        print "    <td>" . ($elemento !== null ? htmlentities($elemento, ENT_QUOTES) : "") . "</td>\n";
+      }
+      print "</tr>\n";
+    }
+    print "</table>\n";
+
+    oci_free_statement($stid);
+    oci_close($conexión);
+
+    ?>
+  </center>
+</body>
+
+</html>
+```
+
+Finalmente, el resultado es el siguiente:
+
+![PHP DB](images/ws_dbtest.png)
