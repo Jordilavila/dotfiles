@@ -142,3 +142,36 @@ vncviewer usuario@192.168.137.221:5900
 Se nos pedirá la contraseña que hemos establecido en la máquina remota y podremos acceder a ella para tener el control absoluto sobre la misma. 
 
 ## RDP
+
+_Remote Desktop Protocol_
+
+<div style="text-align:center">
+    <img src="images/freebsd_rdp_client.png" />
+</div>
+
+RDP es un servicio de escritorio remoto.
+
+Podemos instalar y configurar RDP mediante el uso de este script:
+
+```bash
+wget https://raw.githubusercontent.com/Jordilavila/dotfiles/main/FreeBSD/install_files/install_rdp.sh
+sh install_rdp.sh
+```
+
+Por otra parte, podemos instalar y configurar RDP mediante comandos. Para instalarlo introduciremos el siguiente comando:
+
+```bash
+pkg install -y xrdp
+```
+
+Y ahora vendría la configuración:
+
+```bash
+sysrc xrdp_enable="YES"
+sysrc xrdp_sesman_enable="YES"
+service xrdp restart
+```
+
+Finalmente, nos conectamos mediante la aplicación de escritorio remoto de Windows:
+
+![RDP Connection](images/freebsd_rdp.png)
