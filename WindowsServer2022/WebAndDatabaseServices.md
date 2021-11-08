@@ -276,7 +276,11 @@ FLUSH PRIVILEGES;
 EXIT;
 ```
 
-OJO: igual que anteriormente hemos configurado IIS para que abra la web en un archivo _index.php_, ahora también tendremos que hacerlo.
+OJO: igual que anteriormente hemos configurado IIS para que abra la web en un archivo _index.php_, ahora también tendremos que hacerlo. Por otra parte, también tendremos que otorgar permisos a IIS en el directorio virtual, sino, no pordremos hacer nada.
+
+Una vez realizadas la operaciones anteriores podemos entrar a la web y configurar WordPress.
+
+![WS WP](images/ws_wordpress_panel.png)
 
 ### Instalando y configurando Joomla
 
