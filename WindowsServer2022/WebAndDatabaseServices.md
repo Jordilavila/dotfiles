@@ -278,5 +278,24 @@ EXIT;
 
 OJO: igual que anteriormente hemos configurado IIS para que abra la web en un archivo _index.php_, ahora también tendremos que hacerlo.
 
+### Instalando y configurando Joomla
 
+La instalación de Joomla es relativamente sencilla. Primero vamos a descargar Joomla desde [aquí](https://downloads.joomla.org/cms/joomla4/4-0-4/Joomla_4-0-4-Stable-Full_Package.zip) o con WGET:
 
+```powershell
+wget https://downloads.joomla.org/cms/joomla4/4-0-4/Joomla_4-0-4-Stable-Full_Package.zip -o joomla4.zip
+```
+
+Tras esto vamos a descomprimir el archivo descargado en el directorio del virtualhost que hayamos creado para Joomla. Esto se descomprimirá dentro de una carpeta de Joomla, de la que personalmente recomiendo extraer el contenido y borrarla. Tras esto, tendremos que darle todos los permisos a IIS para que pueda trabajar bien con Joomla y crear un usuario y una base de datos en MariaDB:
+
+```sql
+CREATE DATABASE joomla_db;
+CREATE USER 'joomla_user'@'localhost' IDENTIFIED BY 'joomla_user';
+GRANT ALL ON joomla_db.* TO 'joomla_user'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+Una vez creada la base de datos podremos acceder a nuestra web para instalar Joomla. Tras seguir los pasos de la instalación tendremos Joomla en nuestro virtualhost y podremos trabajar con este CMS:
+
+![WS Joomla](images/ws_iis_joomla.png)

@@ -39,7 +39,7 @@ sysrc sddm_enable="YES" && service sddm start
 
 La instalación de KDE se puede hacer corriendo como administrador el [archivo de instalación](https://raw.githubusercontent.com/Jordilavila/dotfiles/main/FreeBSD/install_files/install_kde5.sh) que he adjuntado en el repositorio.
 
-El archivo se puede descargar y ejecutar con los siguietnes comandos:
+El archivo se puede descargar y ejecutar con los siguientes comandos:
 
 ```bash
 ## Run as root
