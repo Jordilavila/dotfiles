@@ -156,3 +156,23 @@ Ahora ya tendríamos el cliente VNC funcionando y nos podríamos conectar:
 ![VNC_Client](images/rocky_clientvnc.png)
 
 ## RDP
+
+RDP es un servicio de escritorio remoto.
+
+Para instalar RDP introduciremos el siguiente comando:
+
+```bash
+dnf install -y xrdp
+```
+
+Y ahora vendría la configuración:
+
+```bash
+systemctl enable xrdp
+systemctl start xrdp
+firewall-cmd --add-port=3389/tcp
+firewall-cmd --runtime-to-permanent
+systemctl restart xrdp
+```
+
+
