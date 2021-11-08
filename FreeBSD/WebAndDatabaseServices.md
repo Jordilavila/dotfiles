@@ -220,7 +220,7 @@ Para instalar PHP usaremos la siguiente batería de comandos:
 
 ```bash
 pkg update && pkg upgrade -y
-pkg install -y php74-{bcmath,curl,ctype,dom,exif,fileinfo,filter,gd,iconv,json,mbstring,session,simplexml,xml,zip,zlib,openssl,pecl-imagick,pgsql}
+pkg install -y php74-{bcmath,curl,ctype,dom,exif,fileinfo,filter,gd,iconv,intl,json,mbstring,session,simplexml,xml,zip,zlib,openssl,pecl-APCu,pecl-imagick,pgsql,posix,xmlreader,xmlwriter}
 pkg install mod_php74
 ```
 
