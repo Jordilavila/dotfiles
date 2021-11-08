@@ -148,3 +148,21 @@ Para conectarnos por SCP usaremos el siguiente comando:
 ```powershell
 scp <-P <puerto>> <ruta de archivo local> REMOTE_USER@REMOTE_IP:<ruta destino>
 ```
+
+## VNC
+
+El acceso al escritorio remoto se puede hacer mediante el cliente-servidor de Real VNC. Este sistema consta de dos partes, una aplicación cliente y una aplicación servidor. En nuestro servidor Windows instalaremos la aplicación de VNC Server, porque es la máquina a la que queremos acceder de manera remota. Y, en nuestro cliente, instalaremos la versión del cliente. Adjunto los enlaces:
+
+- [VNC Server](https://www.realvnc.com/download/file/vnc.files/VNC-Server-6.8.0-Windows.exe)
+- [VNC Viewer](https://www.realvnc.com/download/file/viewer.files/VNC-Viewer-6.21.920-Windows-64bit.exe)
+
+Una vez instalado el servidor tendremos que iniciar sesión o crearnos una cuenta de RealVNC, donde podremos recoger en una especie de libreta de contactos a todos los equipos que vinculemos a nuestra cuenta. Por otra parte, en el cliente podremos ver esa libreta de contactos y conectarnos a cualquiera de nuestros equipos.
+
+### VNC Server
+
+![VNCServer](images/ws_vnc_server.png)
+
+### VNC Viewer
+
+![VNCViewer](images/ws_vnc_viewer.png)
+
