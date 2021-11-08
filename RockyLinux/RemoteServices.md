@@ -157,7 +157,7 @@ Ahora ya tendríamos el cliente VNC funcionando y nos podríamos conectar:
 
 ## RDP
 
-![RDP CLIENT](images/rocky_rdp_client.png)
+<center>![RDP CLIENT](images/rocky_rdp_client.png)</center>
 
 RDP es un servicio de escritorio remoto.
 
