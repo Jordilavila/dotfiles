@@ -14,8 +14,7 @@ Tras instalar un sistema operativo, lo primero que hay que hacer es actualizar e
 
 ```bash
 # Run as root
-pkg update
-pkg upgrade
+pkg update && pkg upgrade -y
 ```
 
 ### Herramientas esenciales
@@ -48,7 +47,7 @@ wget https://raw.githubusercontent.com/Jordilavila/dotfiles/main/FreeBSD/install
 sh install_kde5.sh
 ```
 
-**Importante:** una vez que hemos instalado KDE5 y puesto en marcha el servicio, tendremos que cambiar de _Wayland_ a _X11_ en la pantalla de inicio de sesión.
+:warning: **Importante:** una vez que hemos instalado KDE5 y puesto en marcha el servicio, tendremos que cambiar de _Wayland_ a _X11_ en la pantalla de inicio de sesión.
 
 ### Si estamos en VirtualBox
 
