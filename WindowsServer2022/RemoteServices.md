@@ -166,3 +166,20 @@ Una vez instalado el servidor tendremos que iniciar sesión o crearnos una cuent
 
 ![VNCViewer](images/ws_vnc_viewer.png)
 
+## RDP
+
+_Remote Desktop Protocol_
+
+<div style="text-align:center">
+    <img src="images/rocky_rdp_client.png" />
+</div>
+
+RDP es un servicio de escritorio remoto. En Windows viene instalado por defecto pero tenemos que activarlo. Para ello iremos a _Configuración_, _Sistema_, _Escritorio Remoto_ y lo activaremos. Tras esto, iremos a _Panel de Control_, _Sistema y Seguridad_ y, en el apartado de _Sistema_, seleccionaremos la opción de _Acceso a Escritorio Remoto_, donde configuraremos a los usuarios que tendrán el permiso para acceder, aunque siempre podemos acceder con la cuenta de administrador.
+
+Finalmente, nos conectamos mediante la aplicación de escritorio remoto de Windows:
+
+![RDP Connection](images/ws_rdp.png)
+
+
+
+
