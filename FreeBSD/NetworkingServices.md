@@ -4,6 +4,62 @@
 
 ## DHCP
 
+_DHCP_ es un protocolo de configuración dinámica de Host. Se trata un protocolo de red cliente/servidor con el que se asigna dinámicamente una dirección IP y otros parámetros de configuración de red a cada dispositivo en una red para que puedan comunicarse con otras redes IP. El servidor guarda una tabla de IPs asociadas a las MAC de algunas máquinas para asignar la dirección a éstas de manera prácticamente instantánea cuando se vuelvan a conectar a la red.
+
+### Instalación de DHCP
+
+La instalación del servidor DHCP en FreeBSD se puede realizar con un script que he preparado o con los comandos de instalación.
+
+#### Opción 1: Instalación desde script
+
+Para instalar DHCP con el script que he preparado tendremos que hacer lo siguiente:
+
+```bash
+wget https://raw.githubusercontent.com/Jordilavila/dotfiles/main/FreeBSD/install_files/install_dhcp.sh
+sh install_dhcp.sh
+```
+
+#### Opción 2: Instalación desde comandos
+
+Para instalar DHCP con los comandos de instalación realizaremos lo siguiente:
+
+```bash
+# Actualización del sistema
+pkg update -y && pkg upgrade -y
+
+# Instalación del servidor DHCP
+pkg install -y dhcpd
+
+# Habilitando el servicio
+sysrc dhcpd_enable="YES"
+sysrc dhcpd_ifaces="em1"
+
+# Reiniciando el servicio
+service dhcpd restart
+```
+
+### Configuración del servidor DHCP
+
+Para configurar el servidor DHCP entraremos al archivo ```/usr/local/etc/dhcpd.conf``` y le agregaremos las líneas siguientes (en mi caso):
+
+```bash
+subnet 192.168.137.0 netmask 255.255.255.0 {
+        range dynamic-bootp 192.168.137.101 192.168.137.150;
+        option broadcast-address 192.168.137.255;
+        option routers 192.168.137.1:
+}
+```
+
+Ahora tendríamos que reiniciar el servicio con el comando ```service dhcpd restart``` y arrancar una segunda máquina a modo de cliente y verificar que se conecte con el servidor DHCP.
+
+La interfaz de red del cliente debería de quedarse similar a esta:
+
+![DHCP Client Config](images/freebsd_client_hostonlydhcp_config.png)
+
+Y, finalmente, la prueba del algodón:
+
+![DHCP Client Connected](images/freebsd_client_hostonlydhcp_connected.png)
+
 ## DNS
 
 ## GIT
