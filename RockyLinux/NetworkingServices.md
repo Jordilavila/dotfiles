@@ -73,7 +73,7 @@ Y, finalmente, la prueba del algodón:
 
 ![DHCP Client Connected](images/rocky_client_hostonlydhcp_connected.png)
 
-:information: Una pequeña anotación. Si ejecutamos el comando ```cat /var/lib/dhcpd/dhcpd.leases``` podremos ver las licencias de conexión asignadas.
+:information_source: Una pequeña anotación. Si ejecutamos el comando ```cat /var/lib/dhcpd/dhcpd.leases``` podremos ver las licencias de conexión asignadas.
 
 ## DNS
 
