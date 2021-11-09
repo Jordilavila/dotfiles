@@ -15,7 +15,8 @@ La instalación del servidor DHCP en Rocky Linux se puede realizar con un script
 Para instalar DHCP con el script que he preparado tendremos que hacer lo siguiente:
 
 ```bash
-
+wget https://raw.githubusercontent.com/Jordilavila/dotfiles/main/RockyLinux/install_files/install_dhcp.sh
+sh install_dhcp.sh
 ```
 
 #### Opción 2: Instalación desde comandos
@@ -49,13 +50,10 @@ Para configurar el servidor DHCP entraremos al archivo ```/etc/dhcp/dhcpd.conf``
 #
 
 option domain-name "rocky.jordi.es";
-
 option domain-name-server rocky.jordi.es;
 
 default-lease-time 600;
-
 max-lease-time 7200;
-
 authoritative;
 
 subnet 192.168.137.0 netmask 255.255.255.0 {
@@ -66,6 +64,16 @@ subnet 192.168.137.0 netmask 255.255.255.0 {
 ```
 
 Ahora tendríamos que reiniciar el servicio con el comando ```systemctl restart dhcpd``` y arrancar una segunda máquina a modo de cliente y verificar que se conecte con el servidor DHCP.
+
+La interfaz de red del cliente debería de quedarse similar a esta:
+
+![DHCP Client Config](images/rocky_client_hostonlydhcp_config.png)
+
+Y, finalmente, la prueba del algodón:
+
+![DHCP Client Connected](images/rocky_client_hostonlydhcp_connected.png)
+
+:information: Una pequeña anotación. Si ejecutamos el comando ```cat /var/lib/dhcpd/dhcpd.leases``` podremos ver las licencias de conexión asignadas.
 
 ## DNS
 
