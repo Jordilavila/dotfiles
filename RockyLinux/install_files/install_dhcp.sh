@@ -11,7 +11,7 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-dnf update && dnf upgrade -y
+dnf update -y && dnf upgrade -y
 dnf install -y dhcp-server
 systemctl enable dhcpd
 firewall-cmd --add-service=dhcp

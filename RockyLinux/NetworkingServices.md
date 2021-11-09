@@ -25,7 +25,7 @@ Para instalar DHCP con los comandos de instalación realizaremos lo siguiente:
 
 ```bash
 # Actualización del sistema
-dnf update && dnf upgrade -y
+dnf update -y && dnf upgrade -y
 
 # Instalación del servidor DHCP
 dnf install -y dhcp-server
