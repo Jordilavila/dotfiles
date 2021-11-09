@@ -4,6 +4,69 @@
 
 ## DHCP
 
+_DHCP_ es un protocolo de configuración dinámica de Host. Se trata un protocolo de red cliente/servidor con el que se asigna dinámicamente una dirección IP y otros parámetros de configuración de red a cada dispositivo en una red para que puedan comunicarse con otras redes IP. El servidor guarda una tabla de IPs asociadas a las MAC de algunas máquinas para asignar la dirección a éstas de manera prácticamente instantánea cuando se vuelvan a conectar a la red.
+
+### Instalación de DHCP
+
+La instalación del servidor DHCP en Rocky Linux se puede realizar con un script que he preparado o con los comandos de instalación.
+
+#### Opción 1: Instalación desde script
+
+Para instalar DHCP con el script que he preparado tendremos que hacer lo siguiente:
+
+```bash
+
+```
+
+#### Opción 2: Instalación desde comandos
+
+Para instalar DHCP con los comandos de instalación realizaremos lo siguiente:
+
+```bash
+# Actualización del sistema
+dnf update && dnf upgrade -y
+
+# Instalación del servidor DHCP
+dnf install -y dhcp-server
+
+# Configurando las reglas para el firewall
+firewall-cmd --add-service=dhcp
+firewall-cmd --runtime-to-permanent
+
+# Habilitando el servicio 
+systemctl enable dhcpd
+```
+
+### Configuración del servidor DHCP
+
+Para configurar el servidor DHCP entraremos al archivo ```/etc/dhcp/dhcpd.conf``` y lo dejaremos tal que así (en mi caso):
+
+```bash
+#
+# DHCP Server Configuration file.
+#   see /usr/share/doc/dhcp-server/dhcpd.conf.example
+#   see dhcpd.conf(5) man page
+#
+
+option domain-name "rocky.jordi.es";
+
+option domain-name-server rocky.jordi.es;
+
+default-lease-time 600;
+
+max-lease-time 7200;
+
+authoritative;
+
+subnet 192.168.137.0 netmask 255.255.255.0 {
+        range dynamic-bootp 192.168.137.51 192.168.137.100;
+        option broadcast-address 192.168.137.255;
+        option routers 192.168.137.1:
+}
+```
+
+Ahora tendríamos que reiniciar el servicio con el comando ```systemctl restart dhcpd``` y arrancar una segunda máquina a modo de cliente y verificar que se conecte con el servidor DHCP.
+
 ## DNS
 
 ## GIT
