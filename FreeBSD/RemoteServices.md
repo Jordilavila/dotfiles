@@ -172,6 +172,29 @@ sysrc xrdp_sesman_enable="YES"
 service xrdp restart
 ```
 
+En mi caso estoy trabajando con un entorno gráfico KDE Plasma bajo X11. Esto significa que tengo que modificar un archivo de RDP. Realmente, este archivo es necesario modificarlo según el sistema que tengamos instalado en nuestra máquina. En la mayoría de los casos, la modificación será descomentar una línea, pero, en el caso que me ocupa no será así, tendré que añadir el escritorio KDE que estamos usando y que no es el que hay en el archivo ```/usr/local/etc/xrdp/startwm.sh``` para que quede tal que así:
+
+```bash
+#!/bin/sh
+#
+# This script is an example. Edit this to suit your needs.
+# If ${HOME}/startwm.sh exists, xrdp-sesman will execute it instead of this.
+
+#### set environment variables here if you want
+export LANG=en_US.UTF-8
+
+#### start desktop envirnment
+# exec gnome-session
+# exec mate-session
+# exec start-lumnina-desktop
+# exec startkde
+# exec startxfce4
+exec startplasma-x11
+# exec xterm
+```
+
+Tras esto, es recomendable reiniciar el sistema.
+
 Finalmente, nos conectamos mediante la aplicación de escritorio remoto de Windows:
 
 ![RDP Connection](images/freebsd_rdp.png)
