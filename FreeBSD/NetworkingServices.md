@@ -40,13 +40,25 @@ service dhcpd restart
 
 ### Configuración del servidor DHCP
 
-Para configurar el servidor DHCP entraremos al archivo ```/usr/local/etc/dhcpd.conf``` y le agregaremos las líneas siguientes (en mi caso):
+Para configurar el servidor DHCP entraremos al archivo ```/usr/local/etc/dhcpd.conf``` y lo dejaremos tal que así (en mi caso):
 
 ```bash
+# dhcpd.conf
+#
+# Sample configuration file for ISC dhcpd
+#
+
+# option definitions common to all supported networks...
+option domain-name "freebsd_server.jordi.es";
+
+default-lease-time 600;
+max-lease-time 7200;
+authoritative;
+
 subnet 192.168.137.0 netmask 255.255.255.0 {
         range dynamic-bootp 192.168.137.101 192.168.137.150;
         option broadcast-address 192.168.137.255;
-        option routers 192.168.137.1:
+        option routers 192.168.137.1;
 }
 ```
 

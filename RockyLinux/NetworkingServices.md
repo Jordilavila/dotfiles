@@ -50,7 +50,7 @@ Para configurar el servidor DHCP entraremos al archivo ```/etc/dhcp/dhcpd.conf``
 #
 
 option domain-name "rocky.jordi.es";
-option domain-name-server rocky.jordi.es;
+option domain-name-servers rocky.jordi.es;
 
 default-lease-time 600;
 max-lease-time 7200;
@@ -59,7 +59,7 @@ authoritative;
 subnet 192.168.137.0 netmask 255.255.255.0 {
         range dynamic-bootp 192.168.137.51 192.168.137.100;
         option broadcast-address 192.168.137.255;
-        option routers 192.168.137.1:
+        option routers 192.168.137.1;
 }
 ```
 
