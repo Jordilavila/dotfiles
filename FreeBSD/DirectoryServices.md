@@ -4,6 +4,60 @@
 
 ## NFS
 
+Network File System es un protocolo de nivel de aplicación, según el Model OSI. Es utilizado para sistemas de archivos distribuido en un entorno de red de computadoras de área local. Este protocolo está incluido por defecto en los sistemas Unix y las distribuciones Linux. 
+
+### Configuración de NFS
+
+Para configurar NFS tendremos, primeramente, que escribir los siguientes comandos en la consola:
+
+```bash
+mkdir /usr/NFS
+chmod 777 /usr/NFS
+sysrc mountd_flags="-r"
+sysrc rpcbind_enable="YES"
+sysrc nfs_server_enable="YES"
+sysrc portmap_enable="YES"
+```
+
+Ahora tendremos que abrir el archivo ```/etc/exports``` y añadir las líneas siguientes:
+
+```bash
+/usr/NFS -alldirs -network 192.168.137.0 mask 255.255.255.0
+/usr/NFS -alldirs 192.168.137.1
+/usr/src client
+/usr/ports client
+```
+
+### Comandos útiles para NFS
+
+Un detalle de unos comandos que serán útiles para NFS:
+
+```bash 
+# Reiniciar el servicio
+service nfsd onestart
+
+# Saber el estado del servicio
+rpcinfo -p
+```
+
+### Un prueba de su funcionamiento
+
+Para probar que funciona, sería interesante crear un archivo en el servidor y editarlo desde el cliente:
+
+#### Archivo en el servidor
+
+![NFS Server File](images/freebsd_nfs_file.png)
+
+#### Editando el archivo en el cliente
+
+![NFS Client File](images/freebsd_client_editfile.png)
+
+#### :warning: NFS Server de Windows
+
+NFS no funcionará en Windows hasta que activemos la característica en cuestión en Windows 11
+
+![NFS Client Activate](images/w11_nfs_client_activate.png)
+
 ## SAMBA
 
 SAMBA es un servicio de compartición de datos entre Linux y Windows. Nos permite compartir datos y dispositivos en la red con este tipo de máquinas. Para configurar SAMBA podemos usar el script que he preparado para ello o hacerlo a mano.
