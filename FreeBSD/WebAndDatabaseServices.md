@@ -222,6 +222,7 @@ Para instalar PHP usaremos la siguiente batería de comandos:
 pkg update && pkg upgrade -y
 pkg install -y php74-{bcmath,curl,ctype,dom,exif,fileinfo,filter,gd,iconv,intl,json,mbstring,session,simplexml,xml,zip,zlib,openssl,pecl-APCu,pecl-imagick,pgsql,posix,xmlreader,xmlwriter}
 pkg install mod_php74
+~$ sudo pkg install -y php74-pdo_mysql
 ```
 
 Tras la instalación creamos el archivo de configuración de Apache (_php.conf_) en la ruta ```/usr/local/etc/apache24/Includes/php.conf``` y lo abrimos para rellenarlo con esto:

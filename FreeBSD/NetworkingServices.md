@@ -156,17 +156,17 @@ git add ARCHIVO
 git commit -m "MENSAJE DEL COMMIT"
 ```
 
-## OwnCloud
+## NextCloud
 
-Estamos acostumbrados a utilizar los servicios en la nube de Dropbox, OneDrive, Google, Amazon, etc. Pero, ¿y si nos creamos nuestra propia nube privada? Pues es posible, tan solo necesitamos _OwnCloud_.
+Estamos acostumbrados a utilizar los servicios en la nube de Dropbox, OneDrive, Google, Amazon, etc. Pero, ¿y si nos creamos nuestra propia nube privada? Pues es posible, tan solo necesitamos _NextCloud_.
 
-_OwnCloud_ es una aplicación de software libre que permite el almacenamiento en línea y aplicaciones en línea. Lo podemos instalar un servidor que disponga de una versión reciente de PHP y con soporte de SQLite, MySQL/MariaDB o PostgreSQL, lo que cumple con los requisitos para instalarlo en nuestro servidor FreeBSD.
+_NextCloud_ es una aplicación de software libre que permite el almacenamiento en línea y aplicaciones en línea. Lo podemos instalar un servidor que disponga de una versión reciente de PHP y con soporte de SQLite, MySQL/MariaDB o PostgreSQL, lo que cumple con los requisitos para instalarlo en nuestro servidor FreeBSD.
 
-Los requisitos para llevar a cabo la instalación de _OwnCloud_ en nuestro caso, son los siguientes:
+Los requisitos para llevar a cabo la instalación de _NextCloud_ en nuestro caso, son los siguientes:
 
 - MariaDB o MySQL
 - Apache
-- Un VirtualHost en Apache para _OwnCloud_
+- Un VirtualHost en Apache para _NextCloud_
 - PHP
 
 ### Creando la base de datos
@@ -174,20 +174,26 @@ Los requisitos para llevar a cabo la instalación de _OwnCloud_ en nuestro caso,
 Lo primero será crear la base de datos con MariaDB. Para ello nos loguearemos con ```mysql -u root -p``` usaremos los siguientes comandos:
 
 ```sql
-CREATE USER 'ownclouduser'@localhost IDENTIFIED BY 'ownclouduser';
-CREATE DATABASE owncloud CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-GRANT ALL ON owncloud.* TO 'ownclouduser'@'localhost' IDENTIFIED BY 'ownclouduser';
+CREATE USER 'nextclouduser'@localhost IDENTIFIED BY 'nextclouduser';
+CREATE DATABASE nextcloud CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+GRANT ALL ON nextcloud.* TO 'nextclouduser'@'localhost' IDENTIFIED BY 'nextclouduser';
 EXIT;
 ```
 
-### Descargando OwnCloud
+### Descargando NextCloud
 
-Para descargar _OwnCloud_ vamos a realizar lo siguiente:
+Para descargar NextCloud vamos a realizar lo siguiente:
 
 ```bash
-wget https://download.owncloud.org/community/owncloud-complete-20210721.zip -O owncloud.zip
-unzip owncloud.zip -d /usr/local/docs/minube.com/
+wget https://download.nextcloud.com/server/releases/nextcloud-22.2.2.zip -O nextcloud.zip
+unzip nextcloud.zip -d /usr/local/docs/minube.com/
 ```
 
-Ahora podríamos entrar en la dirección web que tenemos configurada para instalar OwnCloud en nuestro servidor, pero no lo vamos a lograr porque la última versión de OwnCloud no es compatible con FreeBSD.
+Tras esto tendríamos que seguir una configuración bastante similar a la de WordPress y ya tendríamos el servicio activo. Aunque puede que necesitemos darle permisos antes de llevar a cabo la instalación:
 
+```bash
+chmod -R 777 /usr/local/docs/minube.com
+chown -R www:www /usr/local/docs/minube.com
+```
+
+![FBSD NextCloud](images/freebsd_nextcloud.png)

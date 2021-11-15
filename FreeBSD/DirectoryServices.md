@@ -52,11 +52,17 @@ Para probar que funciona, sería interesante crear un archivo en el servidor y e
 
 ![NFS Client File](images/freebsd_client_editfile.png)
 
-#### :warning: NFS Server de Windows
+#### :warning: NFS Client de Windows
 
 NFS no funcionará en Windows hasta que activemos la característica en cuestión en Windows 11
 
 ![NFS Client Activate](images/w11_nfs_client_activate.png)
+
+Por otra parte, podemos acceder mediante los recursos de red, pero es más útil montar el servidor:
+
+```powershell
+mount.exe -o anon.nolock.casentive \\192.168.137.221\usr\NFS N:
+```
 
 ## SAMBA
 
@@ -71,13 +77,13 @@ wget https://raw.githubusercontent.com/Jordilavila/dotfiles/main/FreeBSD/install
 sh install_samba.sh
 ```
 
-Por otra parte, también podemos hacerlo de manera manual. Lo primero que haremos será modificar algunos parámetros del kernel:
+Por otra parte, también podemos hacerlo de manera manual. Lo primero que haremos será modificar algunos parámetros del kernel. Para ello abrimos el archivo ```/etc/sysctl.conf``` y añadimos las líneas siguientes:
 
 ```bash
-echo "kern.maxfiles=25600
+kern.maxfiles=25600
 kern.maxfilesperproc=16384
 net.inet.tcp.sendspace=65536
-net.inet.tcp.recvspace=65536" >> /etc/sysctl.conf
+net.inet.tcp.recvspace=65536
 ```
 
 Ahora tendremos que habilitar las entradas y salidas asíncronas:
@@ -94,6 +100,13 @@ La instalación de SAMBA se llevará a cabo usando el comando siguiente:
 pkg install -y samba413-4.13.8_1
 ```
 
+También tenemos que crear la carpeta de SAMBA:
+
+```bash
+mkdir /usr/SAMBA
+chmod -R 777 /usr/SAMBA
+```
+
 ### Archivos de configuración de SAMBA
 
 Tras instalar SAMBA, tendremos que crear un archivo de configuración usando el siguiente comando:
@@ -102,31 +115,37 @@ Tras instalar SAMBA, tendremos que crear un archivo de configuración usando el 
 touch /usr/local/etc/smb4.conf
 ```
 
-Y, tras esto, le añadimos la siguiente información mediante el comando ```echo```:
+Y, tras esto, le añadimos la siguiente información al archivo ```/usr/local/etc/smb4.conf```:
 
 ```bash
-echo "[global]
-    workgroup = MYGROUP
-    realm = mygroup.local
-    netbios name = NAS
-
-[usuario data]
-    path = /home/usuario
-    public = no
-    writable = yes
-    printable = no
-    guest ok = no
-    valid users = usuario" >> /usr/local/etc/smb4.conf
+[SAMBA]
+comment = Has accedido al SAMBA de Jordi SE.
+path = \usr\SAMBA
+public = no
+writable = yes
+printable = no
+valid users = usuario
 ```
 
 Ahora nos tocaría habilitar en el arranque el servicio de SAMBA y levantarlo:
 
 ```bash
+sysrc samba_enable="YES"
 sysrc samba_server_enable="YES"
 service samba_server start
 ```
 
 Y, finalmente, reiniciamos el sistema.
+
+### :warning: Cliente Windows
+
+Para usar un cliente Windows tendremos que tener en cuenta algunas cosas. Lo primero será montar el servidor, que para ello usaremos el siguiente comando:
+
+```powershell
+mount.exe -o anon.nolock.casesentive \\192.168.137.221\usr\SAMBA M:
+```
+
+![W11 SMB NFS](images/freebsd_nfs_samba_w11.png)
 
 ## TrueNAS + iSCSI
 
