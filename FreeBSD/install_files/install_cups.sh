@@ -11,7 +11,10 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-pkg install cups hplip gutenprint-cups cups-pdf
+pkg install cups hplip gutenprint-cups cups-pdf cups-filters
+
+mkdir /usr/SAMBA/PDFs
+chmod -R 777 /usr/SAMBA
 
 wget https://download-ib01.fedoraproject.org/pub/epel/7/x86_64/Packages/c/cups-pdf-2.6.1-7.el7.x86_64.rpm
 dnf install -y cups-pdf-2.6.1-7.el7.x86-64.rpm

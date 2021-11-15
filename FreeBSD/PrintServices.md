@@ -10,7 +10,7 @@ Para probar el sistema, vamos a instalar una impresora PDF.
 Para instalar CUPS tendremos que escalar privilegios de administrador en la consola e instalar el siguiente paquete:
 
 ```bash
-pkg install cups print/gutenprint print/hplip cups-pdf
+pkg install cups print/gutenprint print/hplip cups-pdf cups-filtesrs
 ```
 
 Los ficheros de configuración de CUPS se encontrarán en ```/usr/local/etc/cups```.
@@ -30,7 +30,7 @@ Tras esto, tendremos que habilitar los servicios en el arranque del sistema:
 
 ```bash
 sysrc cupsd_enable="YES"
-sysrc devfs_system_ruleset="system"
+sysrc devfs_system_ruleset="YES"
 ```
 
 Y, finalmente, iniciarlos:
@@ -38,6 +38,14 @@ Y, finalmente, iniciarlos:
 ```bash
 service devfs restart
 service cupsd restart
+cupsctl --remote-admin
+```
+
+Ahora creamos la carpeta donde vamos a guardar los PDFs, que en mi caso será en un directorio compartido mediante SAMBA:
+
+```bash
+mkdir /usr/SAMBA/PDFs
+chmod -R 777 /usr/SAMBA
 ```
 
 Si queremos instalar todo esto de golpe, podemos usar un script que he preparado de la siguiente manera:
@@ -62,6 +70,26 @@ Listen /var/run/cups/cups.sock
 Port 631
 #Listen localhost:631
 Listen /var/run/cups/cups.sock
+```
+
+Ahora vamos a cambiar el directorio donde se imprimen los PDFs. En mi caso, los voy a dejar en una carpeta compartida en red mediante SAMBA:
+
+```bash
+### Línea original:
+Out /var/spool/cups-pdf/${USER}
+
+### Bloque a escribir
+#Out /var/spool/cups-pdf/${USER}
+Out /usr/SAMBA/PDFs
+```
+
+```bash
+### Línea original:
+AnonDirName /var/spool/cups-pdf/ANONYMOUS
+
+### Bloque a escribir:
+#AnonDirName /var/spool/cups-pdf/ANONYMOUS
+AnonDirName /usr/SAMBA/PDFs
 ```
 
 Ahora vamos a compartir las impresoras en la red local:
