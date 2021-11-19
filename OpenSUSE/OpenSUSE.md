@@ -51,3 +51,15 @@ wget https://release.gitkraken.com/linux/gitkraken-amd64.rpm
 zypper install -y gitkraken-amd64.rpm
 rm -f gitkraken-amd64.rpm
 ```
+
+### Mis GNOME Extensions favoritas
+
+Prefiero usar el escritorio de GNOME porque con KDE el uso de múltiples pantallas es bastante penoso. Espero que cuando Wayland esté a pleno funcionamiento la cosa cambie, pero creo que me quedaré con GNOME. Este entorno gráfico tiene un aire muy parecido a Mac y eso me gusta bastante. Así mismo, al GNOME base que incluye OpenSUSE creo que le hacen falta unos complementos, a mi parecer bastante útiles, como los siguientes:
+
+- Un menú de aplicaciones completo, desplegable desde la barra de arriba. El que yo instalo es [ArcMenu](https://extensions.gnome.org/extension/3628/arcmenu/) y, además, se le puede cambiar el icono. Un puntazo.
+- Un controlador del dock que verdaderamente brinde una experiencia a lo Mac. El que yo uso es [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/).
+- Un controlador de la velocidad de nuestra conexión a Internet. Yo uso [NetSpeed](https://extensions.gnome.org/extension/104/netspeed/).
+- Un indicador y controlador del espacio de trabajo. Me parece interesante [Workspace indicator](https://extensions.gnome.org/extension/3952/workspace-indicator/)
+
+
+
