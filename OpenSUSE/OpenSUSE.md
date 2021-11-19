@@ -22,7 +22,7 @@ rm -f install_essential_software.sh
 Los paquetes que he considerado esenciales en el entorno de desarrollo son los siguientes, aunque puede que alguno ya venga instalado:
 
 ```bash
-zypper install -y git gcc gdb valgrind make opencv openmp-devel
+zypper install -y git gcc gdb valgrind make opencv openmp-devel busybox-net-tools
 ```
 
 Por otra parte, en el entorno multimedia, me he decantado por instalar estos paquetes:
