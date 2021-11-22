@@ -22,7 +22,8 @@ rm -f install_essential_software.sh
 Los paquetes que he considerado esenciales en el entorno de desarrollo son los siguientes, aunque puede que alguno ya venga instalado:
 
 ```bash
-zypper install -y git gcc gdb valgrind make opencv openmp-devel busybox-net-tools
+zypper install -y git gcc gcc-c++ gdb valgrind make busybox-net-tools
+zypper install -y opencv openmp-devel
 ```
 
 Por otra parte, en el entorno multimedia, me he decantado por instalar estos paquetes:
@@ -48,7 +49,7 @@ GitKraken es una GUI de Git bastante completa y sencilla de usar con la que esto
 
 ```bash
 wget https://release.gitkraken.com/linux/gitkraken-amd64.rpm
-zypper install -y gitkraken-amd64.rpm
+zypper install gitkraken-amd64.rpm
 rm -f gitkraken-amd64.rpm
 ```
 
@@ -60,17 +61,6 @@ Prefiero usar el escritorio de GNOME porque con KDE el uso de múltiples pantall
 - Un controlador del dock que verdaderamente brinde una experiencia a lo Mac. El que yo uso es [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/).
 - Un controlador de la velocidad de nuestra conexión a Internet. Yo uso [NetSpeed](https://extensions.gnome.org/extension/104/netspeed/).
 - Un indicador y controlador del espacio de trabajo. Me parece interesante [Workspace indicator](https://extensions.gnome.org/extension/3952/workspace-indicator/)
-
-### Instalando los controladores gráficos de NVidia
-
-Como tengo una tarjeta gráfica de NVidia debería de instalar los controladores de ésta, aunque no sean necesarios. Para ello, hacemos lo siguiente:
-
-```bash
-sudo zypper addrepo --refresh https://download.nvidia.com/opensuse/tumbleweed NVIDIA
-sudo zypper in x11-video-nvidiaG05
-```
-
-Y con esto, ya tenemos los controladores gráficos.
 
 ### Añadiendo el repositorio Packman para obtener los controladores propietarios de audio y vídeo que nos faltan
 
@@ -108,6 +98,10 @@ cat /etc/shells
 chsh
 ```
 
-Finalmente, reiniciamos el sistema y veremos los cambios.
+Finalmente, reiniciamos el sistema y veremos los cambios. No son muy estéticos, la verdad. Ahora nos tocará instalar _Oh my Shell!_:
 
+```bash
+sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+```
 
+Finalmente, para escoger un tema (a mi me gusta _agnoster_) entraremos al archivo de configuración de ZSH mediante el comando ```sudo nano .zshrc
