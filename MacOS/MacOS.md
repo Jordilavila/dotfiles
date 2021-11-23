@@ -21,3 +21,11 @@ Tras una espera meridianamente larga, en función de la velocidad de nuestra con
 ```zsh
 brew install wget neofetch lolcat
 ```
+
+## Una capa de personalización
+
+Por añadirle una capa de personalización al Mac, he añadido un fondo de pantalla. 
+
+![Cyberpunk Wallpaper](../images/wallpapers/cyberpunk_samurai_sword_girl_2k.jpg)
+
+Nos lo podemos descargar desde [aquí](../images/wallpapers/cyberpunk_samurai_sword_girl_2k.jpg)
