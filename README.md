@@ -1,5 +1,7 @@
 [![Free BSD](https://img.shields.io/badge/FreeBSD-B50000?style=for-the-badge&logo=freebsd&logoColor=white)](FreeBSD/FreeBSD.md)
+[![Mac OS](https://img.shields.io/badge/Mac%20OS-000000?style=for-the-badge&logo=apple&logoColor=F0F0F0)](MacOS/MacOS.md)
 [![OpenSUSE](https://img.shields.io/badge/OpenSUSE-0C322C?style=for-the-badge&logo=SUSE&logoColor=white)](OpenSUSE/OpenSUSE.md)
+[![Raspberry Pi OS](https://img.shields.io/badge/Raspberry%20Pi%20OS-C51A4A?style=for-the-badge&logo=Raspberry-Pi)](RaspberryPiOS/rpios.md)
 [![Rocky Linux](https://img.shields.io/badge/Rocky%20Linux-35BF5C?style=for-the-badge&logo=redhat&logoColor=white)](RockyLinux/RockyLinux.md)
 [![Windows 11](https://img.shields.io/badge/Windows%2011-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)](Windows11/Windows11.md)
 [![Windows Server](https://img.shields.io/badge/Windows%20Server-0078D6?style=for-the-badge&logo=windows&logoColor=white)](WindowsServer2022/WindowsServer2022.md)
@@ -9,6 +11,7 @@
 Mis dotfiles para mis sistemas operativos favoritos o aquellos que he usado más de una vez y he necesitado personalizar.
 
 - [FreeBSD](FreeBSD/FreeBSD.md)
+- [MacOS](MacOS/MacOS.md)
 - [OpenSUSE](OpenSUSE/OpenSUSE.md)
 - [RaspberryPiOS](RaspberryPiOS/rpios.md)
 - [Rocky Linux](RockyLinux/RockyLinux.md)
@@ -27,6 +30,9 @@ Aquí un listado de los _badges_ que he utlizo en el proyecto.
 
 ![Free BSD](https://img.shields.io/badge/FreeBSD-B50000?style=for-the-badge&logo=freebsd&logoColor=white)  
 ![Free BSD](https://img.shields.io/badge/FreeBSD-B50000?style=flat-square&logo=freebsd&logoColor=white)  
+
+![Mac OS](https://img.shields.io/badge/Mac%20OS-000000?style=for-the-badge&logo=apple&logoColor=F0F0F0)  
+![Mac OS](https://img.shields.io/badge/Mac%20OS-000000?style=flat-square&logo=apple&logoColor=F0F0F0)
 
 ![OpenSUSE](https://img.shields.io/badge/OpenSUSE-0C322C?style=for-the-badge&logo=SUSE&logoColor=white)  
 ![OpenSUSE](https://img.shields.io/badge/OpenSUSE-0C322C?style=flat-square&logo=SUSE&logoColor=white)  
