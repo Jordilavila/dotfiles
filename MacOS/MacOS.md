@@ -29,3 +29,38 @@ Por añadirle una capa de personalización al Mac, he añadido un fondo de panta
 ![Cyberpunk Wallpaper](../images/wallpapers/cyberpunk_samurai_sword_girl_2k.jpg)
 
 Nos lo podemos descargar desde [aquí](../images/wallpapers/cyberpunk_samurai_sword_girl_2k.jpg)
+
+## Personalizando la terminal
+
+Al igual que en los sistemas Linux, también podemos personalizar la terminal de nuestro Mac. Cabe destacar que en los MacOS recientes la terminal por defecto es ZSH, por lo que esto va a ser muy sencillo de llevar a cabo.
+
+El primer paso consiste en instalar las fuentes nuevas para la terminal, con lo que podremos ver todos los iconos y demás:
+
+```zsh
+brew tap homebrew/cask-fonts
+brew install --cask font-hack-nerd-font
+```
+
+Tras instalar esto, tenemos que acceder a las preferencias de la consola y en el apartado de la fuente de texto, escoger la fuente _Hack Regular Nerd_. Esta se actualizará automáticamente. Tras esto vamos a instalar Oh-My-Zsh con el siguiente comando:
+
+```zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
+Ahora descargamos _powerlevel10k_:
+
+```zsh
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+```
+
+Ahora vamos a buscar en el archivo de configuración (```.zshrc```) la opción de elegir el tema y lo dejaremos tal que así:
+
+```zsh
+ZSH_THEME="powerlevel10k/powerlevel10k"
+```
+
+Tras esto, reiniciamos la terminal y entraremos la configuración. A mi me gusta una configuración basada en [esta](https://www.swtestacademy.com/customize-mac-terminal/) pero con dos líneas. 
+
+Finalmente, tendremos nuestra consola bien configurada.
+
+
