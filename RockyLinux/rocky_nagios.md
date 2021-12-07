@@ -60,7 +60,7 @@ make install-webconf
 
 ## Creando el usuario web de nagios
 
-Para crear dicha cuenta de usuario haremo suso de los siguientes comandos:
+Para crear dicha cuenta de usuario haremos uso de los siguientes comandos:
 
 ```bash
 htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
