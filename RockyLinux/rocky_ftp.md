@@ -9,7 +9,7 @@ Vamos a instalar un servidor FTP en Rocky Linux mediante ```vsftpd```. También 
 
 ## Instalación del Servidor FTP
 
-Para instalar el servidor FTP haremos uso de los siguientes comandos:
+Para instalar el servidor FTP haremos uso del siguiente comando:
 
 ```bash
 dnf install -y vsftpd
