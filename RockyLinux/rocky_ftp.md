@@ -67,6 +67,10 @@ firewall-cmd --add-service=ftp
 firewall-cmd --runtime-to-permanent
 ```
 
+Ahora ya podríamos conectarnos a nuestro usuario principal y acceder a todo el disco:
+
+![FTP Libre](images/rocky_ftp_libre.png)
+
 ## Usuario enjaulado
 
 Para poder establecer como enjaulado a un usuario, lo primero que tendremos que hacer será crearlo, tal que así:
@@ -95,4 +99,4 @@ Y ahora ya podríamos hacer uso de este usuario.
 
 Cabe destacar que con la configuración que he hecho en el archivo destinado para ese fin, cualquier usuario que tenga su directorio creado en la ruta del server FTP (```/var/www/ftp/```) tendrá acceso a su carpeta, puesto que lo he creado dinámico.
 
-
+![FTP Jaula](images/rocky_ftp_jaula.png)
