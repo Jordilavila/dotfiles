@@ -58,6 +58,7 @@ En este apartado tenemos los enlaces a las distintas opciones que podríamos con
 - [Servicios de Bases de Datos y Web](WebAndDatabaseServices.md)
 - [Servicios de Autenticación](AuthenticationServices.md)
 
+- [Backup](rocky_backup.md)
 - [FTP Server](rocky_ftp.md)
 - [Mensajería Instantánea (OpenFire)](rocky_mens_inst.md)
 - [Nagios](rocky_nagios.md)
