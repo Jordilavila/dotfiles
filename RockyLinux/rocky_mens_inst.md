@@ -1,6 +1,6 @@
 [![Rocky Linux](https://img.shields.io/badge/Rocky%20Linux-35BF5C?style=for-the-badge&logo=redhat&logoColor=white)](RockyLinux.md)
 
-# Mensajería instantánea
+# Mensajería instantánea (_OpenFire_)
 
 Para instalar un servidor de mensajería instantánea podemos usar OpenFire.
 
@@ -24,6 +24,8 @@ firewall-cmd --zone=public --add-port=9090/tcp --permanent
 firewall-cmd --permanent --add-port=5222/tcp --permanent
 firewall-cmd --reload
 ```
+
+## Instalación del cliente (_Spark_)
 
 Para instalar _Spark_ (cliente) usaremos los siguientes comandos:
 
