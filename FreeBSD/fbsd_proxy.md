@@ -42,7 +42,7 @@ http_access allow all
 Ahora tendremos que cambiar la máscara de red de la IP con la que nos conectamos a Internet (10.0.0.0). Tiene que quedar tal que así (principio del archivo):
 
 ```bash
-acl localnet src 10.0.0.0/24        # RFC 1918 local private network (LAN)
+acl localnet src 10.0.2.0/24        # RFC 1918 local private network (LAN)
 ```
 
 ## Creando las listas negras
