@@ -21,6 +21,8 @@ acl blockkeywordlist url_regex "C:\Squid\blockkeywords.lst"
 http_access deny blockkeywordlist
 ```
 
+:warning: Ojo: Puede darse el caso de que el proxy no funcione. Esto se debería a que los archivos especificados se han creado desde la interfaz gráfica, y eso quiere decir que son ```*.lst.txt```. Por lo tanto, tocaría revisarlo y quitar el ```.txt```.
+
 ```bash
 # Example rule allowing access from your local networks.
 # Adapt localnet in the ACL section to list your (internal) IP networks

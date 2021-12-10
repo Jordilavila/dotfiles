@@ -48,3 +48,7 @@ En este apartado tenemos los enlaces a las distintas opciones que podríamos con
 - [Servicios de Red](NetworkingServices.md)
 - [Servicios de Bases de Datos y Web](WebAndDatabaseServices.md)
 - [Servicios de Autenticación](AuthenticationServices.md)
+
+- [FTP Server](winser_ftp.md)
+- [Monitor](winser_monitor.md)
+- [Proxy](winser_proxy.md)
