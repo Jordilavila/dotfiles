@@ -28,7 +28,7 @@ Lo primero que haremos será una actualización del sistema y luego instalaremos
 
 ```bash
 # Instalación de dependencias:
-pkg install apache24 mod_php74 php74-gd php-74-mysqli php74 mariadb105-server
+pkg install apache24 mod_php74 php74-gd php74-mysqli php74 mariadb105-server
 service apache24 enable
 service apache24 restart
 service mysql-server enable
