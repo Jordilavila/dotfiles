@@ -49,6 +49,9 @@ En este apartado tenemos los enlaces a las distintas opciones que podríamos con
 - [Servicios de Bases de Datos y Web](WebAndDatabaseServices.md)
 - [Servicios de Autenticación](AuthenticationServices.md)
 
+- [Backup](winser_backup.md)
 - [FTP Server](winser_ftp.md)
+- [Mensajería instantánea](winser_mens_inst.md)
 - [Monitor](winser_monitor.md)
 - [Proxy](winser_proxy.md)
+- [RAID 5](winser_raid5.md)

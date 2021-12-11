@@ -150,3 +150,9 @@ En este apartado tenemos los enlaces a las distintas opciones que podríamos con
 - [Servicios de Bases de Datos y Web](WebAndDatabaseServices.md)
 - [Servicios de Autenticación](AuthenticationServices.md)
 
+- [Backup](fbsd_backup.md)
+- [FTP Server](fbsd_ftp.md)
+- [Mensarjería instantánea](fbsd_mens_inst.md)
+- [Nagios](fbsd_nagios.md)
+- [Proxy](fbsd_proxy.md)
+- [RAID 5](fbsd_raid5.md)
