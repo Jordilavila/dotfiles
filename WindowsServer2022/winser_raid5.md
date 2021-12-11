@@ -24,3 +24,5 @@ Cuando Windows acabe de formatear los discos duros del RAID tendremos pleno acce
 
 Para comprobar si el RAID tiene errores y repararlos, iremos a las propiedades del disco, desde el mismo explorador, y cambiaremos a la pesataña de _herramientas_, donde usaremos la app de _Comprobación de errores_.
 
+Por otra parte, en el _Administrador de discos_ podemos hacer click sobre algún disco y tendremos la opción de _Sin conexión_. Esta opción provocará un error en el RAID. Tras esto, lo volvemos a conectar y le decimos que reactive el disco. Automáticamente se volverán a sincronizar y tendremos hecha la prueba de integridad.
+
