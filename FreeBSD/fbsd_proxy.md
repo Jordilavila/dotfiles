@@ -70,7 +70,7 @@ Como yo estoy trabajando con KDE y todo lo que ello conlleva, este proxy no lo v
 
 ![Proxy firefox](images/freebsd_proxy_firefox.png)
 
-Ahora no habrá manera de conectarse a YouTube ni a Netflix:
+Ahora, ya no habrá manera de conectarse a YouTube ni a Netflix:
 
 ![Proxy rechaza](images/freebsd_proxy_rechaza.png)
 
