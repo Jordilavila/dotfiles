@@ -10,7 +10,7 @@ Para probar el sistema, vamos a instalar una impresora PDF.
 Para instalar CUPS tendremos que escalar privilegios de administrador en la consola e instalar el siguiente paquete:
 
 ```bash
-pkg install cups print/gutenprint print/hplip cups-pdf cups-filtesrs
+pkg install cups print/gutenprint print/hplip cups-pdf cups-filters
 ```
 
 Los ficheros de configuración de CUPS se encontrarán en ```/usr/local/etc/cups```.
@@ -186,7 +186,7 @@ Nos iremos a la pestaña de administración y nos logueamos con el usuario ```ro
 
 ![Impresora añadida](images/adding_printer.png)
 
-Le damos a continuar y configuramos el nombre de la impresora, la descripción etc.Importante marcar que queremos compartir la impresora.
+Le damos a continuar y configuramos el nombre de la impresora, la descripción etc. Importante marcar que queremos compartir la impresora.
 
 ![Configuración de la impresora - paso 1](images/config_printer.png)
 

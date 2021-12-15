@@ -171,7 +171,7 @@ Los requisitos para llevar a cabo la instalación de _NextCloud_ en nuestro caso
 
 ### Creando la base de datos
 
-Lo primero será crear la base de datos con MariaDB. Para ello nos loguearemos con ```mysql -u root -p``` usaremos los siguientes comandos:
+Lo primero será crear la base de datos con MariaDB. Para ello nos loguearemos con ```mysql -u root -p``` y usaremos los siguientes comandos:
 
 ```sql
 CREATE USER 'nextclouduser'@localhost IDENTIFIED BY 'nextclouduser';

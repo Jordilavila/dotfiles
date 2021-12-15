@@ -118,7 +118,7 @@ Finalmente, podemos probar la instalación accediendo a _localhost_ desde el nav
 
 ### Configurando un VirtualHost
 
-La configuración no tiene pérdida. Se lleva a cabo desde el _Administrador de Internet Information Services_. Sólo tendremos que hacer click derecho sobre la capeta _sitios_ (situada en la parte izquierda) y seleccionar la opción de _Agregar sitio web_. Tras esto lo único que tendremos que hacer es seguir los pasos.
+La configuración no tiene pérdida. Se lleva a cabo desde el _Administrador de Internet Information Services_. Sólo tendremos que hacer click derecho sobre la carpeta _sitios_ (situada en la parte izquierda) y seleccionar la opción de _Agregar sitio web_. Tras esto lo único que tendremos que hacer es seguir los pasos.
 
 ![ISS ADD VIRTUALHOST](images/ws_add_virtualhost.png)
 
@@ -132,7 +132,7 @@ Ahora tendremos que modificar el archivo ```C:/Windows/System32/drivers/etc/host
 
 ### Instalación de PHP
 
-Las últimas versiones de PHP que se podían instalar con un instalador _.msi_ se quedaron la versión 5. Actualmente está la versión 8, que es la que vamos a instalar. La instalación de PHP se hace descargando un archivo _.zip_ y descomprimiéndolo en el disco duro, configurando el _PATH_ del sistema y bla bla bla. 
+Las últimas versiones de PHP que se podían instalar con un instalador _.msi_ se quedaron en la versión 5. Actualmente está la versión 8, que es la que vamos a instalar. La instalación de PHP se hace descargando un archivo _.zip_ y descomprimiéndolo en el disco duro, configurando el _PATH_ del sistema y bla bla bla. 
 
 Olvídate:
 
@@ -242,7 +242,7 @@ Ahora procedemos a configurar MariaDB. Para ello habrá que entrar con ```mysql 
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'PASSWORD';
 ```
 
-Una vez que hemnos cambiado la constraseña es interesante verificar que funciona. Tras esto, continuamos:
+Una vez que hemos cambiado la constraseña es interesante verificar que funciona. Tras esto, continuamos:
 
 ```sql
 -- HABILITAMOS LOS LOGS
@@ -276,9 +276,9 @@ FLUSH PRIVILEGES;
 EXIT;
 ```
 
-OJO: igual que anteriormente hemos configurado IIS para que abra la web en un archivo _index.php_, ahora también tendremos que hacerlo. Por otra parte, también tendremos que otorgar permisos a IIS en el directorio virtual, sino, no pordremos hacer nada.
+OJO: igual que anteriormente hemos configurado IIS para que abra la web en un archivo _index.php_, ahora también tendremos que hacerlo. Por otra parte, también tendremos que otorgar permisos a IIS en el directorio virtual, sino, no podremos hacer nada.
 
-Una vez realizadas la operaciones anteriores podemos entrar a la web y configurar WordPress.
+Una vez realizadas las operaciones anteriores podemos entrar a la web y configurar WordPress.
 
 ![WS WP](images/ws_wordpress_panel.png)
 
