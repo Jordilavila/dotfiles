@@ -106,40 +106,10 @@ sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O 
 
 Finalmente, para escoger un tema (a mi me gusta _agnoster_) entraremos al archivo de configuración de ZSH mediante el comando ```sudo nano .zshrc
 
-## Instalación de OpenMPI en OpenSUSE
+## Instalación de herramientas para desarrolladores
 
-### Instalación
+Aquí un listado de algunas herramientas para desarrolladores que he tenido que instalar en algún momento:
 
-Para llevar a cabo la instalación de OpenMPI (v4.1.2) en nuestro sistema OpenSUSE, usaremos este script:
+- [CompiladoresCPP](CompiladoresCPP.md)
+- [OpenMPI](OpenMPI.md)
 
-```bash
-wget https://raw.githubusercontent.com/Jordilavila/dotfiles/main/OpenSUSE/install_files/install_openmpi.sh
-sudo sh install_openmpi.sh
-```
-
-O bien, podemos usar los comandos en cuestión:
-
-```bash
-wget https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.2.tar.gz -O openmpi.tar.gz
-tar -xvf openmpi.tar.gz
-cd openmpi-4.1.2
-./configure --prefix="/home/$USER/.openmpi"
-make
-sudo make install
-export PATH="$PATH:/home/$USER/.openmpi/bin"
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/$USER/.openmpi/lib/"
-```
-
-### Añadiéndolo al PATH
-
-En caso de que queramos añadir estas nuevas variables al PATH del sistema en las siguientes sesiones, usaremos los siguientes comandos:
-
-```bash
-# En caso de estar trabajando con una terminal BASH (el script lo hace por defecto)
-echo export PATH="$PATH:/home/$USER/.openmpi/bin" >> /home/$USER/.bashrc
-echo export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/$USER/.openmpi/lib/" >> /home/$USER/.bashrc
-
-# En caso de estar trabajando con una terminal ZSH (no pasa nada por usar esto si hemos usado el script)
-echo export PATH="$PATH:/home/$USER/.openmpi/bin" >> /home/$USER/.zshrc
-echo export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/$USER/.openmpi/lib/" >> /home/$USER/.zshrc
-```
