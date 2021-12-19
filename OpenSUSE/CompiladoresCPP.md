@@ -36,6 +36,6 @@ sudo rm -f gitkraken-amd64.rpm
 
 La instalación de estas herramientas se instalará tal que así:
 
-´´´bash
+```bash
 sudo zypper install -y opencv openmp-devel
-´´´
+```
