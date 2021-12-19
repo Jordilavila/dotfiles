@@ -121,8 +121,8 @@ O bien, podemos usar los comandos en cuestión:
 
 ```bash
 wget https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.2.tar.gz -O openmpi.tar.gz
-tar -xvf openmpi
-cd openmpi
+tar -xvf openmpi.tar.gz
+cd openmpi-4.1.2
 ./configure --prefix="/home/$USER/.openmpi"
 make
 sudo make install
