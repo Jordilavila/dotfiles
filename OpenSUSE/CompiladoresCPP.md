@@ -28,7 +28,7 @@ Para instalar GitKraken haremos lo siguiente:
 
 ```bash
 wget https://release.gitkraken.com/linux/gitkraken-amd64.rpm
-sudo zypper install -y gitkraken-amd64.rpm
+sudo zypper install gitkraken-amd64.rpm
 sudo rm -f gitkraken-amd64.rpm
 ```
 
@@ -37,5 +37,5 @@ sudo rm -f gitkraken-amd64.rpm
 La instalación de estas herramientas se instalará tal que así:
 
 ```bash
-sudo zypper install -y opencv openmp-devel
+sudo zypper install -y opencv opencv-devel libgomp1
 ```
