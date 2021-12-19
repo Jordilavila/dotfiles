@@ -1,3 +1,4 @@
+[![OpenSUSE](https://img.shields.io/badge/OpenSUSE-0C322C?style=for-the-badge&logo=SUSE&logoColor=white)](OpenSUSE.md)
 
 # OpenMPI
 
