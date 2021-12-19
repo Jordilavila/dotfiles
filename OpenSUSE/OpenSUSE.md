@@ -4,6 +4,10 @@
 
 OpenSUSE es el sistema operativo que tengo instalado como sistema nativo en mi PC. Elegí este sistema por escapar del mundo ```Debian``` y probar cosas nuevas. El primer intento fue _Manjaro_, pero no podía usar el _Secure Boot_. Tras un petardazo del _insider preview_ de Windows 11 tuve que instalar dicho sistema desde 0, y con ello aproveché para formatear todos los discos y probar este sistema.
 
+## Personalización de OpenSUSE
+
+La versión por defecto de OpenSUSE se queda bastante pobre, por lo que es interesante darle una capa de personalización para hacerlo más a nuestro gusto. Para ello podemos acceder a [este enlace](Personalizacion.md) y podremos ver algunos aspectos básicos de la personalización de OpenSUSE.
+
 ## Instalando software esencial
 
 Considero que como desarrollador voy a necesitar una batería de software bastante completa que se puede resumir en este apartado. Principalmente, voy a necesitar herramientas de Git (GitKraken), IDEs como Visual Studio Code y algún que otro compilador.
@@ -53,15 +57,6 @@ zypper install gitkraken-amd64.rpm
 rm -f gitkraken-amd64.rpm
 ```
 
-### Mis GNOME Extensions favoritas
-
-Prefiero usar el escritorio de GNOME porque con KDE el uso de múltiples pantallas es bastante penoso. Espero que cuando Wayland esté a pleno funcionamiento la cosa cambie, pero creo que me quedaré con GNOME. Este entorno gráfico tiene un aire muy parecido a Mac y eso me gusta bastante. Así mismo, al GNOME base que incluye OpenSUSE creo que le hacen falta unos complementos, a mi parecer bastante útiles, como los siguientes:
-
-- Un menú de aplicaciones completo, desplegable desde la barra de arriba. El que yo instalo es [ArcMenu](https://extensions.gnome.org/extension/3628/arcmenu/) y, además, se le puede cambiar el icono. Un puntazo.
-- Un controlador del dock que verdaderamente brinde una experiencia a lo Mac. El que yo uso es [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/).
-- Un controlador de la velocidad de nuestra conexión a Internet. Yo uso [NetSpeed](https://extensions.gnome.org/extension/104/netspeed/).
-- Un indicador y controlador del espacio de trabajo. Me parece interesante [Workspace indicator](https://extensions.gnome.org/extension/3952/workspace-indicator/)
-
 ### Añadiendo el repositorio Packman para obtener los controladores propietarios de audio y vídeo que nos faltan
 
 Tal vez hemos intentado reproducir un archivo MKV (vídeo de alta calidad) y no nos ha funcionado. Esto se debe a que faltan drivers de formatos propietarios. Se soluciona rápido:
@@ -73,38 +68,6 @@ sudo zypper dup --from packman --allow-vendor-change
 ```
 
 Ahora se nos descargarán muchísimos paquetes y ya podremos reproducir vídeo con la traquilidad de que va a funcionar.
-
-### Adiós BASH, hola ZSH
-
-Esto es bastante irrelevante pero, como usé ZSH en Manjaro y me gustó tanto, ahora también la quiero en OpenSUSE. Esto no es nada más que instalar un intérprete de Shell distinto. Para instalarlo usaremos el siguiente conjunto de comandos:
-
-```bash
-sudo zypper install zsh
-```
-
-Ahora tocaría cambiar al nuevo Shell y configurarlo, para ello basta con hacer esto y leer y seguir los pasos:
-
-```bash
-zsh
-```
-
-Una vez configurado tendremos que cambiar el shell por defecto, y para ello usaremos este comando y seguiremos los pasos que nos pidan:
-
-```bash
-# Listado de shells:
-cat /etc/shells
-
-# Cambiar el shell por defecto:
-chsh
-```
-
-Finalmente, reiniciamos el sistema y veremos los cambios. No son muy estéticos, la verdad. Ahora nos tocará instalar _Oh my Shell!_:
-
-```bash
-sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-```
-
-Finalmente, para escoger un tema (a mi me gusta _agnoster_) entraremos al archivo de configuración de ZSH mediante el comando ```sudo nano .zshrc
 
 ## Instalación de herramientas para desarrolladores
 
