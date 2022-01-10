@@ -6,7 +6,9 @@ Windows 11 va a ser el sistema operativo por excelencia para muchos usuarios y u
 
 ## Cosas interesantes para instalar
 
-- 
+- [Chocolatey](Chocolatey.md)
+- [Laravel](Laravel.md)
+- [MariaDB (MySQL)](MariaDB.md)
 
 ## Carpeta del GodMode
 
