@@ -17,4 +17,8 @@ Es necesario que activemos el servidor SSHD de la Raspberry para poder usarla de
 
 Proyectos que he hecho con la Raspberry Pi:
 
-- [PiVPN](projects/pivpn.md): Una VPN sencilla con nuestra Raspberry
+- [Backup Service](projects/backupservice.md): Servicio de copias de seguridad automatizadas
+- [Disco Duro en Red](projects/hddred.md): Cómo montar un disco duro en nuestra red local
+- [DB Server con MariaDB](projects/mariadb.md): Cómo montar un servicio de bases de datos en nuestra Raspberry Pi
+- [VPN con PiVPN](projects/pivpn.md): Una VPN sencilla con nuestra Raspberry
+- [Web Service](projects/webserverapache.md): Un servicio de páginas web mediante Apache
