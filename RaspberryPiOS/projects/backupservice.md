@@ -50,7 +50,7 @@ Por ahora, le hemos dicho al Cron que queremos que ejecute ciertos comandos con 
 
 ## Script de Backups
 
-El script de Bash será el siguiente:
+Podemos encontrar el script justo [aquí](../files/backup.sh), que es tal que así:
 
 ```bash
 #!/bin/bash
@@ -65,7 +65,7 @@ El script de Bash será el siguiente:
 backup_files="/home/pi/TelegramBots /var/www/html"
 
 # Where to backup to.
-dest="/mount/HDDRED/rpibackups"
+dest="/media/HDDRED/rpibackups/backups"
 
 # This script is prepared to backup data in two ways: weekely or daily
 # Add to crontab with -d to have a daily backup respect to the saturday.
@@ -79,18 +79,35 @@ BACKUP_FILE_NAME_ABS="Abs"
 # backup file name of the differential copy:
 BACKUP_FILE_NAME_DIFF="Diff"
 
+# RSYNC variables
+set -o errexit
+set -o nounset
+#set -o pipefail
+
+readonly SOURCE_DIR=$backup_files
+readonly BACKUP_DIR=$dest
+readonly DATETIME="$(date '+%Y-%m-%d_%H:%M:%S')"
+readonly BACKUP_PATH="${BACKUP_DIR}/${DATETIME}"
+readonly LATEST_LINK="${BACKUP_DIR}/latest"
+
+mkdir -p "${BACKUP_DIR}"
+mkdir -p "${LATEST_LINK}"
+
 # Begin the script
 #
-. ~/.bash_profile
+#. ~/.bash_profile
 if [ $1 = "-d" ]
 then
     echo "Differential Backup"
-    DATE=$( date -d "last sat" +%Y%m%d )
-    TYPE=$BACKUP_FILE_NAME_DIFF
-    archive_file="$DATE-$TYPE.tar.gz"
-    tar czf $dest/$archive_file $backup_files
+    rsync -aRv --delete \
+        ${SOURCE_DIR} \
+        --link-dest "${LATEST_LINK}" \
+        --exclude-from="backup_exclude.lst" \
+        "${BACKUP_PATH}"
+    
+    rm -rf "{$LATEST_LINK}"
     echo "Backup finished. Files:"
-    ls -lh $dest
+    ln -s "${BACKUP_PATH}" "${LATEST_LINK}"
 elif [ $1 = "-a" ]
 then
     echo "Absolute Backup"
@@ -108,5 +125,40 @@ else
     echo ""
 fi
 ```
+
+## Ubicando el script
+
+Para ubicar nuestro script, creamos un fichero llamado `backup.sh`:
+
+```bash
+nano backup.sh
+```
+
+Cuando se nos abre el editor de texto, simplemente copiamos y pegamos el script anterior. Moldéalo a tus necesidades, evidentemente.
+
+A parte de todo esto, es necesitamos una lista con los directorios que queremos excluir de la copia de seguridad. Para crear este archivo, lo haremos tal que así:
+
+```bash
+nano backup_exclude.lst
+```
+
+Un ejemplo de archivo de exclusión:
+
+```
+/var/www/html/moodle/
+/var/www/html/phpmyadmin
+/var/www/html/admin
+/var/www/html/pihole
+.cache
+```
+
+Una vez hecho, guardamos y probamos el script tal que así:
+
+```bash
+sudo sh backup.sh -d
+sudo sh backup.sh -a
+```
+
+Finalmente, ya tenemos nuestro script funcionando. Y, como el crontab ya está rellenado, las copias de seguridad se harán automaticamente.
 
 
