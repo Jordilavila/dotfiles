@@ -100,8 +100,8 @@ Tras la instalación de SAMBA tendremos que añadir la configuración pertinente
     browseable = Yes
     writeable = Yes
     only guest = no
-    create mask = 0755
-    directory mask = 0755
+    create mask = 0750
+    directory mask = 0750
     public = Yes
 ```
 

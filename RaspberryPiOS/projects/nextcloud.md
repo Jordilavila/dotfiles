@@ -25,9 +25,9 @@ sudo mysql
 ```
 
 ```sql
-CREATE DATABASE nextcloud;
-CREATE USER ‘nextcloud’@’localhost’ identified by ‘PASSWORD’;
-GRANT ALL PRIVILEGES on nextcloud.* to ‘nextcloud’@’localhost’;
+CREATE DATABASE nextcloud_db;
+CREATE USER 'nextcloud_user'@localhost identified by 'nextcloud_user';
+GRANT ALL PRIVILEGES on nextcloud_db.* to 'nextcloud_user'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
@@ -40,4 +40,8 @@ El siguiente paso es descargar el servidor de NextCloud. Para ello haremos lo si
 ```bash
 cd /var/www/html
 wget https://download.nextcloud.com/server/releases/latest.zip -O nextcloud_latest.zip
+sudo unzip nextcloud_latest.zip
+sudo chmod 755 nextcloud -R
 ```
+
+Ahora, entra en la Raspberry desde el navegador tal que así: `IP_RPI/nextcloud` y configura el Nextcloud
