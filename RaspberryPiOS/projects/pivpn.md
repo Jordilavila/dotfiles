@@ -11,6 +11,13 @@ https://github.com/pivpn/pivpn/issues/393
 
 ## Instalación de PiVPN
 
+Para llevar a cabo la instalación de PiVPN empezaremos con el siguiente comando: 
+
+```bash
+sudo curl -L https://install.pivpn.io | bash
+```
+
+
 ## Configuración de usuarios con PiVPN
 
 Para añadir un usuario tendremos que usar el comando `pivpn add`. Tras instroducir este comando, el sistema nos pedirá un nombre de usuario para el _user_ que estamos creando y la duración (en días) del certificado que se crea. Además, también se pide la contraseña para el usuario.
