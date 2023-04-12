@@ -73,3 +73,26 @@ sudo zypper install gcc valgrind make gdb gcc-c++
 ```
 
 Si queremos más información sobre OpenSUSE, podemos acceder a [ésta](../OpenSUSE/OpenSUSE.md) parte del repositorio.
+
+### SystemD
+
+Los que estamos más familiarizados con el uso de sistemas Linux utilizamos a menudo el comando `systemctl`. Esto no está activado por defecto en las máquinas de la WSL, por lo que recomiendo bastante activarlo. Para ello entraremos en la máquina WSL y ejecutaremos el siguiente comando:
+
+```bash
+sudo nano /etc/wsl.conf
+```
+
+Se nos abrirá un fichero de configuración de la WSL y tendremos que añadir el siguiente fragmento:
+
+```bash
+[boot]
+systemd=true
+```
+
+Tras esto, salimos de la máquina virtual y ejecutamos el siguiente comando en la PowerShell:
+
+```powershell
+wsl.exe --shutdown
+```
+
+Esto reiniciará la máquina virtual y activará `systemd`.
